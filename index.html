@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,226 +11,155 @@
 
 <style>
 *{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
-
 body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#0a0f0d;
-  color:#eafff3;
+  margin:0;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  background:#0d1b14;
+  color:#eafff5;
 }
-
 .card{
-  width:94%;
-  max-width:430px;
-  background:#0f1a15;
+  width:94%;max-width:420px;
+  background:#0f241a;
   border-radius:22px;
   padding:24px;
   text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.6);
+  box-shadow:0 25px 60px rgba(0,0,0,.6);
 }
-
-/* LOGO */
 .logo{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  margin:0 auto 10px;
-  overflow:hidden;
+  width:110px;height:110px;border-radius:50%;
+  margin:0 auto 10px;overflow:hidden;
 }
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+.logo img{width:100%;height:100%;object-fit:cover}
 
-/* TITLE */
 h1{
-  margin:6px 0 6px;
-  font-size:32px;
+  margin:6px 0 4px;
+  font-size:30px;
   font-weight:900;
-  background:linear-gradient(135deg,#00e676,#7cffc4);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:#2dff9a;
 }
 
 .trust{
-  font-size:13px;
-  color:#b7f5d8;
   margin-bottom:16px;
+  font-size:14px;
+  color:#c9ffe6;
 }
 
-/* PLANS */
+.plans{margin:18px 0}
 .plan{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  display:flex;justify-content:space-between;align-items:center;
+  background:#132b21;
+  border-radius:16px;
   padding:14px 16px;
   margin-bottom:10px;
-  border-radius:16px;
   font-size:16px;
-  font-weight:700;
+  font-weight:800;
   cursor:pointer;
   border:2px solid transparent;
 }
-
-.plan.trial{background:#12261d;color:#9fffd3}
-.plan.month{background:#1c2220;color:#ffd88a}
-.plan.life{background:#15221b;color:#b8ffdc}
-
-.plan.active{border-color:#00e676}
+.plan.active{border-color:#2dff9a}
 
 .badge{
+  margin-left:8px;
+  background:#ffcf4a;
+  color:#2b2b2b;
   font-size:11px;
-  padding:3px 8px;
-  border-radius:8px;
-  margin-left:6px;
-  background:#1f3d2e;
-  color:#9fffd6;
+  font-weight:900;
+  padding:4px 8px;
+  border-radius:10px;
 }
 
-/* PAY */
 .pay-btn{
   width:100%;
-  margin-top:14px;
   padding:16px;
   border:none;
   border-radius:18px;
-  background:linear-gradient(135deg,#00e676,#00c853);
-  color:#003820;
   font-size:18px;
-  font-weight:800;
+  font-weight:900;
   cursor:pointer;
+  background:linear-gradient(180deg,#2dff9a,#1bcf7a);
+  color:#052014;
+  margin-top:10px;
 }
 
-/* TRUST BELOW PAY */
-.secure-text{
-  margin-top:8px;
+.lock{
+  margin-top:10px;
   font-size:13px;
   color:#9fffd6;
 }
 
-/* PAYMENT ICON TEXT */
-.pay-icons{
-  margin-top:6px;
-  font-size:12px;
-  color:#a6e8c8;
-}
-
-/* TELEGRAM SUPPORT */
-.tg{
-  margin-top:16px;
+.support{
+  margin-top:18px;
   font-size:15px;
-  color:#7cffc4;
-  cursor:pointer;
   font-weight:700;
+  color:#2dff9a;
 }
 
 .footer{
   margin-top:6px;
   font-size:12px;
-  color:#8fd9b9;
+  color:#8fd9b8;
 }
-
-/* TOAST */
-.toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#000;
-  color:#00e676;
-  padding:10px 18px;
-  border-radius:20px;
-  font-size:14px;
-  font-weight:700;
-  opacity:0;
-  transition:.3s;
-}
-.toast.show{opacity:1}
 </style>
 </head>
 
 <body>
-
 <div class="card">
 
   <div class="logo">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s320/85938.jpg">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
 
   <h1>EliteHub</h1>
   <div class="trust">⭐ Trusted by 1,000+ users</div>
 
-  <div class="plan trial active" data-amount="1">
-    <div>1-Day Trial <span class="badge">LIMITED</span></div>
-    <div>₹1</div>
-  </div>
+  <div class="plans">
+    <div class="plan active" data-amount="1">
+      <div>1-Day Trial <span class="badge">LIMITED</span></div>
+      <div>₹1</div>
+    </div>
 
-  <div class="plan month" data-amount="99">
-    <div>Monthly</div>
-    <div>₹99</div>
-  </div>
+    <div class="plan" data-amount="99">
+      <div>Monthly <span class="badge">MOST POPULAR</span></div>
+      <div>₹99</div>
+    </div>
 
-  <div class="plan life" data-amount="199">
-    <div>Lifetime <span class="badge">Best Value</span></div>
-    <div>₹199</div>
+    <div class="plan" data-amount="199">
+      <div>Lifetime <span class="badge">BEST VALUE</span></div>
+      <div>₹199</div>
+    </div>
   </div>
 
   <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
 
-  <div class="secure-text">🔒 Secure Payment • Instant Access After Payment</div>
-  <div class="pay-icons">UPI • PhonePe • GPay • Razorpay Supported</div>
+  <div class="lock">🔒 Instant Access After Payment</div>
 
-  <div class="tg" onclick="copyTG()">
-    Need help? Contact support: @EliteExclusiveX
-  </div>
+  <div class="support">Support : @EliteExclusiveX</div>
 
   <div class="footer">
     EliteHub Official • Secure Payment • One-time payment
   </div>
-
 </div>
 
-<div class="toast" id="toast">✔ Telegram username copied</div>
-
 <script>
-const UPI_ID = "Mswp.2520100425652180@axisbank";
-const TG_USERNAME = "@EliteExclusiveX";
-
-let amount = 1;
-const plans = document.querySelectorAll('.plan');
-const btn = document.getElementById('payBtn');
+const UPI_ID="Mswp.2520100425652180@axisbank";
+let selectedAmount=1;
+const plans=document.querySelectorAll(".plan");
+const payBtn=document.getElementById("payBtn");
 
 plans.forEach(p=>{
   p.onclick=()=>{
-    plans.forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    amount = p.dataset.amount;
-    btn.textContent = `Pay ₹${amount} Securely`;
+    plans.forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    selectedAmount=p.dataset.amount;
+    payBtn.innerText=`Pay ₹${selectedAmount} Securely`;
   }
 });
 
-btn.onclick=()=>{
-  const upi =
-    "upi://pay"+
-    `?pa=${UPI_ID}`+
-    "&pn=EliteHub"+
-    `&am=${amount}`+
-    "&cu=INR"+
-    "&tn=EliteHub%20Access";
-  location.href = upi;
+payBtn.onclick=()=>{
+  location.href=
+   `upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${selectedAmount}&cu=INR&tn=EliteHub%20Access`;
 };
-
-function copyTG(){
-  navigator.clipboard.writeText(TG_USERNAME);
-  const t=document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),1200);
-}
 </script>
 
 </body>
-</html>
+  </html>
