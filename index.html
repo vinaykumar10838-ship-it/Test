@@ -7,12 +7,20 @@
 
 <style>
 :root{
-  --bg:#0b1f18;
-  --card:#0e2a21;
-  --accent:#00e676;
-  --muted:#9fffd6;
+  --bg:#020c09;
+  --card:#0b1f18;
+  --card-border:#134e3a;
+  --green:#00e676;
+  --green-dark:#00c853;
+  --text:#e8fff4;
+  --muted:#7ed9b2;
+  --yellow:#ffd54f;
 }
-*{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+
+*{
+  box-sizing:border-box;
+  font-family:Segoe UI,Arial,sans-serif;
+}
 
 body{
   margin:0;
@@ -20,8 +28,8 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#020c09;
-  color:#e8fff4;
+  background:var(--bg);
+  color:var(--text);
 }
 
 .card{
@@ -31,48 +39,58 @@ body{
   border-radius:22px;
   padding:24px;
   text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,.6);
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
 }
 
+/* LOGO */
 .logo{
-  width:110px;height:110px;
+  width:110px;
+  height:110px;
   border-radius:50%;
   margin:0 auto 10px;
   overflow:hidden;
-  box-shadow:0 0 30px rgba(0,230,118,.6);
+  border:2px solid var(--green-dark);
 }
-.logo img{width:100%;height:100%;object-fit:cover}
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
+/* TITLE */
 h1{
-  margin:6px 0 14px;
+  margin:8px 0 14px;
   font-size:30px;
-  font-weight:900;
+  font-weight:800;
+  color:var(--text);
 }
 
-.plans{margin:18px 0}
+/* PLANS */
+.plans{
+  margin-bottom:16px;
+}
 
 .plan{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:#0b1f18;
-  border-radius:16px;
   padding:14px 16px;
   margin-bottom:10px;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
+  border-radius:14px;
+  background:#0e2a21;
   border:2px solid transparent;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
 }
 
 .plan.active{
-  border-color:var(--accent);
-  box-shadow:0 0 15px rgba(0,230,118,.4);
+  border-color:var(--green);
 }
 
 .badge{
-  background:var(--accent);
-  color:#003820;
+  background:var(--yellow);
+  color:#2b2b2b;
   font-size:11px;
   font-weight:900;
   padding:4px 8px;
@@ -80,18 +98,17 @@ h1{
   margin-left:8px;
 }
 
+/* PAY BUTTON */
 .pay-btn{
   width:100%;
   padding:16px;
   border:none;
-  border-radius:18px;
+  border-radius:16px;
   font-size:18px;
-  font-weight:900;
+  font-weight:800;
   cursor:pointer;
-  background:linear-gradient(135deg,#00e676,#00c853);
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
   color:#003820;
-  margin-top:12px;
-  box-shadow:0 0 25px rgba(0,230,118,.6);
 }
 
 .secure-text{
@@ -100,32 +117,30 @@ h1{
   color:var(--muted);
 }
 
-.hr{
-  height:1px;
-  background:#134e3a;
-  margin:18px 0;
-}
-
-.tg{
+/* TELEGRAM */
+.telegram{
+  margin-top:18px;
   font-size:16px;
-  font-weight:900;
-  color:var(--accent);
+  font-weight:800;
+  color:var(--green);
   cursor:pointer;
 }
 
+/* FOOTER */
 .footer{
-  margin-top:10px;
+  margin-top:6px;
   font-size:12px;
-  color:#7ed9b2;
+  color:var(--muted);
 }
 
+/* TOAST */
 .toast{
   position:fixed;
   bottom:20px;
   left:50%;
   transform:translateX(-50%);
   background:#000;
-  color:#00e676;
+  color:var(--green);
   padding:10px 18px;
   border-radius:20px;
   font-size:14px;
@@ -150,13 +165,14 @@ h1{
 
   <!-- PLANS -->
   <div class="plans">
+
     <div class="plan active" data-amount="1">
       <div>1-Day Trial</div>
       <div>₹1</div>
     </div>
 
     <div class="plan" data-amount="99">
-      <div>Monthly</div>
+      <div>Monthly <span class="badge">MOST POPULAR</span></div>
       <div>₹99</div>
     </div>
 
@@ -164,23 +180,25 @@ h1{
       <div>Lifetime <span class="badge">BEST VALUE</span></div>
       <div>₹199</div>
     </div>
+
   </div>
 
-  <!-- PAY BUTTON -->
+  <!-- PAY -->
   <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
-  <div class="secure-text">🔒 Secure Payment • Instant Access</div>
-
-  <div class="hr"></div>
+  <div class="secure-text">🔒 Secure Payment • Instant Access After Payment</div>
 
   <!-- TELEGRAM -->
-  <div class="tg" onclick="copyTG()">@EliteExclusiveX</div>
+  <div class="telegram" onclick="copyTG()">
+    @EliteExclusiveX
+  </div>
 
   <div class="footer">
-    EliteHub Official • Secure UPI
+    EliteHub Official • Secure UPI • One-time payment
   </div>
+
 </div>
 
-<div class="toast" id="toast">✔ Username Copied</div>
+<div class="toast" id="toast">✔ Telegram username copied</div>
 
 <script>
 const UPI_ID = "Mswp.2520100425652180@axisbank";
