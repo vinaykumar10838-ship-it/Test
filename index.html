@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EliteHub – Trial Access</title>
+<title>EliteHub – Access Plans</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -11,113 +10,165 @@
 <meta http-equiv="Expires" content="0">
 
 <style>
+:root{
+  --bg:#0b1d2a;
+  --card:#102a3d;
+  --accent:#00d084;
+  --blue:#229ED9;
+  --muted:#9fbcd1;
+}
+*{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
 body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#0b1d2a;
+  margin:0;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#0b1d2a,#0f2a3f,#0b1d2a);
   color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
 }
 .card{
-  width:92%;
-  max-width:420px;
-  background:#102a3d;
-  border-radius:18px;
-  padding:22px;
+  width:94%;max-width:440px;
+  background:var(--card);
+  border-radius:22px;
+  padding:24px;
   text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.6);
+  box-shadow:0 35px 70px rgba(0,0,0,.65);
 }
-h1{
-  margin:0;
-  font-size:28px;
+.logo{
+  width:110px;height:110px;border-radius:50%;
+  margin:0 auto 8px;overflow:hidden;
+  box-shadow:0 0 40px rgba(0,208,132,.7);
 }
-.sub{
-  color:#8fd3ff;
-  font-size:14px;
-  margin-top:4px;
-}
+.logo img{width:100%;height:100%;object-fit:cover}
+h1{margin:6px 0 2px;font-size:30px;font-weight:900}
+.sub{font-size:14px;color:#8fd3ff}
+
+.plans{margin:18px 0}
 .plan{
-  margin:20px 0;
-  background:#0e2233;
-  border-radius:14px;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
-  font-size:18px;
-  font-weight:700;
+  display:flex;justify-content:space-between;align-items:center;
+  background:#0e2233;border-radius:16px;
+  padding:14px 16px;margin-bottom:10px;
+  font-size:16px;font-weight:800;cursor:pointer;
+  border:2px solid transparent;
 }
+.plan small{font-weight:600;color:var(--muted)}
+.plan.active{border-color:var(--accent)}
+.badge{
+  background:#ffd54f;color:#2b2b2b;
+  font-size:11px;font-weight:900;
+  padding:4px 8px;border-radius:10px;margin-left:8px;
+}
+
 .pay-btn{
-  width:100%;
-  padding:16px;
-  font-size:18px;
-  font-weight:800;
-  border:none;
-  border-radius:16px;
-  background:#00d084;
-  color:#001a12;
-  cursor:pointer;
+  width:100%;padding:16px;border:none;border-radius:18px;
+  font-size:18px;font-weight:900;cursor:pointer;
+  background:linear-gradient(180deg,#44ffb8,#1fd79a);
+  color:#001a12;margin-top:10px;
 }
 .note{
-  margin-top:14px;
-  font-size:13px;
-  color:#9fbcd1;
-  line-height:1.4;
+  margin-top:10px;font-size:13px;color:var(--muted);line-height:1.45;
 }
-.tg{
-  margin-top:18px;
+.hr{height:1px;background:#163a52;margin:16px 0}
+
+.copy-btn{
+  width:100%;padding:14px;border:none;border-radius:16px;
+  background:linear-gradient(180deg,#1bbcff,#0d8fcf);
+  color:#001018;font-size:15px;font-weight:900;cursor:pointer;
 }
-.tg-btn{
-  display:inline-block;
-  padding:14px 18px;
-  border-radius:14px;
-  background:#229ED9;
-  color:#fff;
-  text-decoration:none;
-  font-weight:800;
+.footer{margin-top:12px;font-size:12px;color:#9edfff}
+
+.toast{
+  position:fixed;bottom:20px;left:50%;
+  transform:translateX(-50%);
+  background:#000;color:#00ffb2;
+  padding:10px 18px;border-radius:20px;
+  font-size:14px;font-weight:700;
+  opacity:0;transition:.3s;
 }
+.toast.show{opacity:1}
 </style>
 </head>
 
 <body>
-
 <div class="card">
-  <h1>EliteHub</h1>
-  <div class="sub">Premium Telegram Trial Access</div>
 
-  <div class="plan">
-    <span>1-Day Trial</span>
-    <span>₹29</span>
+  <!-- 🔰 LOGO (absolute URL; change only if needed) -->
+  <div class="logo">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
 
-  <button class="pay-btn" onclick="payNow()">
-    Pay ₹29 via UPI
-  </button>
+  <h1>EliteHub</h1>
+  <div class="sub">Premium Telegram Access</div>
+
+  <!-- PLANS -->
+  <div class="plans">
+    <div class="plan active" data-amount="1">
+      <div>1-Day Trial <small>Entry</small></div>
+      <div>₹1</div>
+    </div>
+
+    <div class="plan" data-amount="99">
+      <div>Monthly <span class="badge">MOST POPULAR</span></div>
+      <div>₹99</div>
+    </div>
+
+    <div class="plan" data-amount="199">
+      <div>Lifetime</div>
+      <div>₹199</div>
+    </div>
+  </div>
+
+  <!-- PAY -->
+  <button class="pay-btn" id="payBtn">Pay ₹1 via UPI</button>
 
   <div class="note">
-    Pay using Paytm / GPay / PhonePe.<br>
+    Pay only via <b>PhonePe / Paytm / GPay</b>.<br>
     If payment completes, message us on Telegram with screenshot.
   </div>
 
-  <div class="tg">
-    <a class="tg-btn" href="https://t.me/EliteExclusiveX" target="_blank">
-      Contact @EliteExclusiveX
-    </a>
+  <div class="hr"></div>
+
+  <!-- TELEGRAM COPY -->
+  <button class="copy-btn" onclick="copyTG()">📋 Copy Telegram Username</button>
+
+  <div class="footer">
+    EliteHub Official • Secure UPI • One-time payment
   </div>
 </div>
 
+<div class="toast" id="toast">✔ Copied</div>
+
 <script>
-function payNow(){
+const UPI_ID = "Mswp.2520100425652180@axisbank";
+const TG_USERNAME = "@EliteExclusiveX";
+
+let selectedAmount = 1;
+const plans = document.querySelectorAll('.plan');
+const payBtn = document.getElementById('payBtn');
+
+plans.forEach(p=>{
+  p.addEventListener('click', ()=>{
+    plans.forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    selectedAmount = p.getAttribute('data-amount');
+    payBtn.textContent = `Pay ₹${selectedAmount} via UPI`;
+  });
+});
+
+payBtn.addEventListener('click', ()=>{
   const upi =
     "upi://pay"+
-    "?pa=Mswp.2520100425652180@axisbank"+
+    `?pa=${encodeURIComponent(UPI_ID)}`+
     "&pn=EliteHub"+
-    "&am=29"+
+    `&am=${encodeURIComponent(selectedAmount)}`+
     "&cu=INR"+
-    "&tn=EliteHub%201%20Day%20Trial";
+    "&tn=EliteHub%20Access";
   window.location.href = upi;
+});
+
+function copyTG(){
+  navigator.clipboard.writeText(TG_USERNAME);
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1200);
 }
 </script>
 
