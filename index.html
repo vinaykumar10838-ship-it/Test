@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,12 +33,12 @@ body{
   box-shadow:0 30px 60px rgba(0,0,0,.6);
 }
 
-/* LOGO – NO COLOR AROUND */
+/* LOGO */
 .logo{
   width:110px;
   height:110px;
   border-radius:50%;
-  margin:0 auto 8px;
+  margin:0 auto 10px;
   overflow:hidden;
 }
 .logo img{
@@ -46,11 +47,20 @@ body{
   object-fit:cover;
 }
 
+/* TITLE */
 h1{
-  margin:8px 0 16px;
-  font-size:30px;
-  font-weight:800;
-  color:#eafff3;
+  margin:6px 0 6px;
+  font-size:32px;
+  font-weight:900;
+  background:linear-gradient(135deg,#00e676,#7cffc4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.trust{
+  font-size:13px;
+  color:#b7f5d8;
+  margin-bottom:16px;
 }
 
 /* PLANS */
@@ -67,15 +77,22 @@ h1{
   border:2px solid transparent;
 }
 
-/* Individual colors */
 .plan.trial{background:#12261d;color:#9fffd3}
 .plan.month{background:#1c2220;color:#ffd88a}
 .plan.life{background:#15221b;color:#b8ffdc}
 
-.plan.active{
-  border-color:#00e676;
+.plan.active{border-color:#00e676}
+
+.badge{
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:8px;
+  margin-left:6px;
+  background:#1f3d2e;
+  color:#9fffd6;
 }
 
+/* PAY */
 .pay-btn{
   width:100%;
   margin-top:14px;
@@ -89,19 +106,27 @@ h1{
   cursor:pointer;
 }
 
+/* TRUST BELOW PAY */
 .secure-text{
-  margin-top:10px;
+  margin-top:8px;
   font-size:13px;
   color:#9fffd6;
 }
 
-/* Telegram */
+/* PAYMENT ICON TEXT */
+.pay-icons{
+  margin-top:6px;
+  font-size:12px;
+  color:#a6e8c8;
+}
+
+/* TELEGRAM SUPPORT */
 .tg{
-  margin-top:14px;
-  font-size:18px;
-  font-weight:800;
-  color:#00e676;
+  margin-top:16px;
+  font-size:15px;
+  color:#7cffc4;
   cursor:pointer;
+  font-weight:700;
 }
 
 .footer{
@@ -110,7 +135,7 @@ h1{
   color:#8fd9b9;
 }
 
-/* Toast */
+/* TOAST */
 .toast{
   position:fixed;
   bottom:20px;
@@ -138,9 +163,10 @@ h1{
   </div>
 
   <h1>EliteHub</h1>
+  <div class="trust">⭐ Trusted by 1,000+ users</div>
 
   <div class="plan trial active" data-amount="1">
-    <div>1-Day Trial</div>
+    <div>1-Day Trial <span class="badge">LIMITED</span></div>
     <div>₹1</div>
   </div>
 
@@ -150,18 +176,17 @@ h1{
   </div>
 
   <div class="plan life" data-amount="199">
-    <div>Lifetime <small>(Best Value)</small></div>
+    <div>Lifetime <span class="badge">Best Value</span></div>
     <div>₹199</div>
   </div>
 
   <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
 
-  <div class="secure-text">
-    🔒 Secure Payment • Instant Access After Payment
-  </div>
+  <div class="secure-text">🔒 Secure Payment • Instant Access After Payment</div>
+  <div class="pay-icons">UPI • PhonePe • GPay • Razorpay Supported</div>
 
   <div class="tg" onclick="copyTG()">
-    @EliteExclusiveX
+    Need help? Contact support: @EliteExclusiveX
   </div>
 
   <div class="footer">
