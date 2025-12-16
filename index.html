@@ -58,27 +58,10 @@ body{
 .logo img{width:100%;height:100%;object-fit:cover}
 
 h1{
-  margin:4px 0 18px;
+  margin:4px 0 20px;
   font-size:34px;
   font-weight:900;
   letter-spacing:.6px;
-}
-
-/* Secure badge */
-.secure{
-  display:inline-block;
-  margin-bottom:20px;
-  padding:10px 18px;
-  border-radius:999px;
-  background:linear-gradient(
-    135deg,
-    rgba(0,245,160,.18),
-    rgba(0,194,255,.18)
-  );
-  color:var(--accent);
-  font-size:13px;
-  font-weight:800;
-  box-shadow:0 0 25px rgba(0,245,160,.25);
 }
 
 /* Plans */
@@ -122,10 +105,26 @@ h1{
   cursor:pointer;
   color:#001a12;
   background:
-    linear-gradient(135deg,var(--accent),var(--accent2));
+    linear-gradient(
+      135deg,
+      #00f5a0,
+      #00c2ff
+    );
   box-shadow:
     0 18px 45px rgba(0,245,160,.45),
-    inset 0 0 0 1px rgba(255,255,255,.25);
+    inset 0 0 0 1px rgba(255,255,255,.35),
+    inset 0 -6px 12px rgba(0,0,0,.15);
+}
+
+/* Secure payment small text */
+.secure-small{
+  margin-top:8px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.3px;
+  color:#7fffd4;
+  text-shadow:
+    0 0 10px rgba(0,245,160,.45);
 }
 
 /* Telegram */
@@ -166,14 +165,11 @@ h1{
 
 <div class="card">
 
-  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
 
   <h1>EliteHub</h1>
-
-  <div class="secure">🔒 Secure Payment • Verified Access</div>
 
   <div class="plan active" data-amount="1">
     <span>1-Day Trial</span>
@@ -191,6 +187,7 @@ h1{
   </div>
 
   <button class="paybtn" id="payBtn">Pay ₹1 Securely</button>
+  <div class="secure-small">🔒 Secure Payment • Verified Access</div>
 
   <div class="tg">
     Telegram Support<br>
