@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EliteHub – Access Plans</title>
+<title>EliteHub – Premium Telegram Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -10,167 +10,244 @@
 <meta http-equiv="Expires" content="0">
 
 <style>
-:root{
-  --bg:#0b1d2a;
-  --card:#102a3d;
-  --accent:#00d084;
-  --blue:#229ED9;
-  --muted:#9fbcd1;
-}
-*{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+*{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
 body{
   margin:0;min-height:100vh;
   display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#0b1d2a,#0f2a3f,#0b1d2a);
+  background:linear-gradient(135deg,#071a2d,#0b2c45,#071a2d);
   color:#fff;
 }
 .card{
-  width:94%;max-width:440px;
-  background:var(--card);
-  border-radius:22px;
+  width:94%;max-width:430px;
+  background:#0e2238;
+  border-radius:26px;
   padding:24px;
-  text-align:center;
-  box-shadow:0 35px 70px rgba(0,0,0,.65);
+  box-shadow:0 35px 90px rgba(0,0,0,.65);
+  position:relative;
 }
 .logo{
-  width:110px;height:110px;border-radius:50%;
-  margin:0 auto 8px;overflow:hidden;
-  box-shadow:0 0 40px rgba(0,208,132,.7);
+  width:120px;height:120px;border-radius:50%;
+  margin:auto;
+  overflow:hidden;
+  box-shadow:0 0 50px rgba(0,255,160,.9);
 }
 .logo img{width:100%;height:100%;object-fit:cover}
-h1{margin:6px 0 2px;font-size:30px;font-weight:900}
-.sub{font-size:14px;color:#8fd3ff}
 
-.plans{margin:18px 0}
+h1{text-align:center;margin:14px 0 4px;font-size:34px;font-weight:900}
+.sub{text-align:center;color:#9ed7ff;font-size:14px}
+
+.flag{
+  text-align:center;
+  margin-top:8px;
+  font-size:18px;
+  animation:pulse 1.6s infinite;
+}
+@keyframes pulse{
+  0%{opacity:.6}50%{opacity:1}100%{opacity:.6}
+}
+
+.stats{
+  margin-top:14px;
+  background:#07192c;
+  border-radius:16px;
+  padding:12px;
+  font-size:14px;
+}
+.stats div{margin:6px 0}
+
+.timer,.slots{
+  margin-top:10px;
+  text-align:center;
+  font-weight:700;
+  color:#00ffb2;
+}
+
 .plan{
-  display:flex;justify-content:space-between;align-items:center;
-  background:#0e2233;border-radius:16px;
-  padding:14px 16px;margin-bottom:10px;
-  font-size:16px;font-weight:800;cursor:pointer;
-  border:2px solid transparent;
+  margin-top:12px;
+  background:#07192c;
+  border-radius:16px;
+  padding:14px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:16px;
+  font-weight:800;
 }
-.plan small{font-weight:600;color:var(--muted)}
-.plan.active{border-color:var(--accent)}
-.badge{
-  background:#ffd54f;color:#2b2b2b;
-  font-size:11px;font-weight:900;
-  padding:4px 8px;border-radius:10px;margin-left:8px;
+.plan.highlight{
+  border:2px solid #00ffb2;
+  box-shadow:0 0 18px rgba(0,255,178,.5);
 }
 
-.pay-btn{
-  width:100%;padding:16px;border:none;border-radius:18px;
-  font-size:18px;font-weight:900;cursor:pointer;
-  background:linear-gradient(180deg,#44ffb8,#1fd79a);
-  color:#001a12;margin-top:10px;
+.paybtn{
+  margin-top:16px;
+  width:100%;
+  padding:18px;
+  font-size:20px;
+  font-weight:900;
+  border:none;border-radius:20px;
+  background:linear-gradient(135deg,#3dffcb,#00d49a);
+  color:#002015;
+  cursor:pointer;
 }
-.note{
-  margin-top:10px;font-size:13px;color:var(--muted);line-height:1.45;
-}
-.hr{height:1px;background:#163a52;margin:16px 0}
 
-.copy-btn{
-  width:100%;padding:14px;border:none;border-radius:16px;
-  background:linear-gradient(180deg,#1bbcff,#0d8fcf);
-  color:#001018;font-size:15px;font-weight:900;cursor:pointer;
+.info{
+  text-align:center;
+  font-size:13px;
+  color:#bcdcff;
+  margin-top:10px;
+  line-height:1.4;
 }
-.footer{margin-top:12px;font-size:12px;color:#9edfff}
+
+.copybtn{
+  margin-top:14px;
+  width:100%;
+  padding:14px;
+  border-radius:18px;
+  border:none;
+  font-size:16px;
+  font-weight:800;
+  background:linear-gradient(135deg,#2fd3ff,#1aa4e0);
+  color:#00131c;
+  cursor:pointer;
+}
+
+.footer{
+  margin-top:14px;
+  text-align:center;
+  font-size:12px;
+  color:#9fd4ff;
+}
+
+.popup{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#0a1f34;
+  padding:12px 18px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
+  display:none;
+  font-size:14px;
+}
 
 .toast{
-  position:fixed;bottom:20px;left:50%;
+  position:fixed;
+  bottom:80px;
+  left:50%;
   transform:translateX(-50%);
-  background:#000;color:#00ffb2;
-  padding:10px 18px;border-radius:20px;
-  font-size:14px;font-weight:700;
-  opacity:0;transition:.3s;
+  background:#000;
+  color:#00ffb2;
+  padding:10px 18px;
+  border-radius:20px;
+  opacity:0;
+  transition:.3s;
 }
 .toast.show{opacity:1}
 </style>
 </head>
 
 <body>
+
 <div class="card">
 
-  <!-- 🔰 LOGO (absolute URL; change only if needed) -->
+  <!-- LOGO -->
   <div class="logo">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
+    <img src="https://vinaykumar10838-ship-it.github.io/Test/upi-qr.png.png" alt="EliteHub">
   </div>
 
   <h1>EliteHub</h1>
   <div class="sub">Premium Telegram Access</div>
 
-  <!-- PLANS -->
-  <div class="plans">
-    <div class="plan active" data-amount="1">
-      <div>1-Day Trial <small>Entry</small></div>
-      <div>₹1</div>
-    </div>
+  <div class="flag">🇮🇳 Trusted by Users Across India 🇮🇳</div>
 
-    <div class="plan" data-amount="99">
-      <div>Monthly <span class="badge">MOST POPULAR</span></div>
-      <div>₹99</div>
-    </div>
-
-    <div class="plan" data-amount="199">
-      <div>Lifetime</div>
-      <div>₹199</div>
-    </div>
+  <div class="stats">
+    <div>👥 <span id="members">500</span>+ Active Members</div>
+    <div>⭐ <span id="rating">4.8</span> Average User Rating</div>
+    <div>✅ Trusted by Users Across India</div>
   </div>
 
-  <!-- PAY -->
-  <button class="pay-btn" id="payBtn">Pay ₹1 via UPI</button>
+  <div class="timer">⏱️ Offer resets in <span id="countdown">15:00</span></div>
+  <div class="slots">🔥 Trial Slots Left: <span id="slots">7</span>/10</div>
 
-  <div class="note">
-    Pay only via <b>PhonePe / Paytm / GPay</b>.<br>
-    If payment completes, message us on Telegram with screenshot.
+  <div class="plan highlight">
+    <span>1-Day Trial Access</span><strong>₹1</strong>
+  </div>
+  <div class="plan">
+    <span>Monthly Access</span><strong>₹99</strong>
+  </div>
+  <div class="plan">
+    <span>Lifetime Access</span><strong>₹199</strong>
   </div>
 
-  <div class="hr"></div>
+  <button class="paybtn" onclick="pay()">Pay ₹1 via UPI</button>
 
-  <!-- TELEGRAM COPY -->
-  <button class="copy-btn" onclick="copyTG()">📋 Copy Telegram Username</button>
+  <div class="info">
+    Pay only via <b>PhonePe / Paytm / GPay</b><br>
+    After payment, message us on Telegram with screenshot
+  </div>
+
+  <button class="copybtn" onclick="copyTG()">📋 Copy Telegram Username</button>
 
   <div class="footer">
-    EliteHub Official • Secure UPI • One-time payment
+    EliteHub Official • Secure UPI • One-time Payment
   </div>
 </div>
 
-<div class="toast" id="toast">✔ Copied</div>
+<div class="popup" id="popup">Someone just purchased 🎉</div>
+<div class="toast" id="toast">✔ Telegram username copied</div>
 
 <script>
-const UPI_ID = "Mswp.2520100425652180@axisbank";
-const TG_USERNAME = "@EliteExclusiveX";
+/* 15 min countdown */
+let time=900;
+setInterval(()=>{
+  let m=Math.floor(time/60);
+  let s=time%60;
+  document.getElementById("countdown").innerText=
+  `${m}:${s<10?'0'+s:s}`;
+  time--; if(time<0) time=900;
+},1000);
 
-let selectedAmount = 1;
-const plans = document.querySelectorAll('.plan');
-const payBtn = document.getElementById('payBtn');
+/* Members auto increase */
+let mem=500;
+setInterval(()=>{
+  mem+=Math.floor(Math.random()*3);
+  document.getElementById("members").innerText=mem;
+},5000);
 
-plans.forEach(p=>{
-  p.addEventListener('click', ()=>{
-    plans.forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    selectedAmount = p.getAttribute('data-amount');
-    payBtn.textContent = `Pay ₹${selectedAmount} via UPI`;
-  });
-});
+/* Rating auto change */
+setInterval(()=>{
+  let r=(4.6+Math.random()*0.3).toFixed(1);
+  document.getElementById("rating").innerText=r;
+},6000);
 
-payBtn.addEventListener('click', ()=>{
-  const upi =
-    "upi://pay"+
-    `?pa=${encodeURIComponent(UPI_ID)}`+
-    "&pn=EliteHub"+
-    `&am=${encodeURIComponent(selectedAmount)}`+
-    "&cu=INR"+
-    "&tn=EliteHub%20Access";
-  window.location.href = upi;
-});
+/* Trial slots */
+let slots=7;
+setInterval(()=>{
+  slots=slots>1?slots-1:7;
+  document.getElementById("slots").innerText=slots;
+},12000);
 
+/* Purchase popup */
+setInterval(()=>{
+  const p=document.getElementById("popup");
+  p.style.display="block";
+  setTimeout(()=>p.style.display="none",3000);
+},9000);
+
+/* UPI */
+function pay(){
+  location.href="upi://pay?pa=Mswp.2520100425652180@axisbank&pn=EliteHub&am=1&cu=INR&tn=EliteHub+Trial";
+}
+
+/* Telegram copy */
 function copyTG(){
-  navigator.clipboard.writeText(TG_USERNAME);
-  const t=document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),1200);
+  navigator.clipboard.writeText("@EliteExclusiveX");
+  const t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),1200);
 }
 </script>
 
 </body>
-</html>
+    </html>
