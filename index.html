@@ -7,147 +7,99 @@
 
 <style>
 body{
-margin:0;
-font-family: system-ui, -apple-system, BlinkMacSystemFont;
-background: radial-gradient(circle at top,#0f2a44,#071827);
-color:#fff;
-display:flex;
-justify-content:center;
-padding:20px;
+  margin:0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  background: radial-gradient(circle at top,#0f2a44,#050b16);
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  padding:20px;
 }
-
 .card{
-width:100%;
-max-width:420px;
-background:#0b2238;
-border-radius:22px;
-padding:24px;
-box-shadow:0 20px 40px rgba(0,0,0,.6);
+  width:100%;
+  max-width:420px;
+  background:#0b2238;
+  border-radius:24px;
+  padding:26px;
+  box-shadow:0 30px 70px rgba(0,0,0,.6);
+  text-align:center;
 }
-
 .logo{
-width:110px;
-height:110px;
-border-radius:50%;
-margin:0 auto 14px;
-display:block;
-box-shadow:0 0 35px rgba(0,255,200,.5);
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  margin:0 auto 12px;
+  display:block;
+  box-shadow:0 0 40px rgba(0,255,200,.6);
 }
-
 h1{
-text-align:center;
-margin:8px 0 4px;
+  margin:8px 0 4px;
+  font-size:32px;
 }
-
-.subtitle{
-text-align:center;
-color:#9fdcff;
-font-size:14px;
-margin-bottom:14px;
-}
-
-.badge{
-text-align:center;
-margin-bottom:18px;
-font-size:14px;
-}
-
-.badge span{
-display:inline-block;
-margin:4px;
-}
-
-.statbox{
-background:#081b2d;
-padding:14px;
-border-radius:14px;
-margin-bottom:14px;
-font-size:14px;
-}
-
-.timer{
-color:#2effc3;
-font-weight:600;
-margin-bottom:6px;
+.sub{
+  color:#9fdcff;
+  font-size:14px;
+  margin-bottom:18px;
 }
 
 .plan{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:14px;
-border-radius:14px;
-margin:10px 0;
-background:#071a2c;
-border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+  border-radius:16px;
+  margin:12px 0;
+  background:#071a2c;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:17px;
+  font-weight:600;
 }
-
 .plan.trial{
-border:2px solid #25ffb2;
-box-shadow:0 0 18px rgba(37,255,178,.4);
-}
-
-.plan b{
-font-size:16px;
+  border:2px solid #25ffb2;
+  box-shadow:0 0 18px rgba(37,255,178,.4);
 }
 
 .paybtn{
-margin-top:18px;
-width:100%;
-padding:16px;
-font-size:18px;
-border:none;
-border-radius:16px;
-cursor:pointer;
-background:linear-gradient(135deg,#2dffb8,#19c6ff);
-color:#002018;
-font-weight:700;
-animation:pulse 2.5s infinite;
+  margin-top:18px;
+  width:100%;
+  padding:18px;
+  font-size:20px;
+  border:none;
+  border-radius:18px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#2dffb8,#19c6ff);
+  color:#002018;
+  font-weight:800;
 }
 
-@keyframes pulse{
-0%{box-shadow:0 0 0 rgba(45,255,184,.6)}
-50%{box-shadow:0 0 28px rgba(45,255,184,.8)}
-100%{box-shadow:0 0 0 rgba(45,255,184,.6)}
+.tg{
+  margin-top:22px;
+  font-size:16px;
+  color:#9fdcff;
 }
-
-.info{
-text-align:center;
-font-size:13px;
-color:#c8eaff;
-margin-top:10px;
+.username{
+  display:inline-block;
+  margin-top:6px;
+  font-size:18px;
+  font-weight:800;
+  color:#2dffb8;
+  cursor:pointer;
 }
-
-.tgbtn{
-margin-top:14px;
-width:100%;
-padding:14px;
-border-radius:14px;
-border:none;
-background:#1da1f2;
-color:#fff;
-font-size:16px;
-cursor:pointer;
-}
-
-.footer{
-text-align:center;
-margin-top:14px;
-font-size:13px;
-color:#a8d7ff;
+.username:hover{
+  text-decoration:underline;
 }
 
 .toast{
-position:fixed;
-bottom:-80px;
-left:50%;
-transform:translateX(-50%);
-background:#000;
-padding:12px 18px;
-border-radius:14px;
-font-size:14px;
-transition:.6s;
-box-shadow:0 10px 25px rgba(0,0,0,.6);
+  position:fixed;
+  bottom:-80px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#000;
+  padding:12px 18px;
+  border-radius:14px;
+  font-size:14px;
+  transition:.6s;
+  box-shadow:0 10px 25px rgba(0,0,0,.6);
 }
 .toast.show{bottom:30px}
 </style>
@@ -160,78 +112,46 @@ box-shadow:0 10px 25px rgba(0,0,0,.6);
 <img class="logo" src="https://vinaykumar10838-ship-it.github.io/Test/upi-qr.png.png">
 
 <h1>EliteHub</h1>
-<div class="subtitle">Premium Telegram Access</div>
-
-<div class="badge">
-🇮🇳 Trusted by Users Across India 🇮🇳
-</div>
-
-<div class="statbox">
-<div class="timer">⏳ Offer resets in <span id="countdown">15:00</span></div>
-🔥 Trial Slots Left: <b>1/10</b>
-</div>
+<div class="sub">Premium Telegram Access</div>
 
 <div class="plan trial">
-<b>1-Day Trial Access</b>
-<span>₹1</span>
+  <span>1-Day Trial</span>
+  <span>₹1</span>
 </div>
 
 <div class="plan">
-<b>Monthly Access</b>
-<span>₹99</span>
+  <span>Monthly Access</span>
+  <span>₹99</span>
 </div>
 
 <div class="plan">
-<b>Lifetime Access</b>
-<span>₹199</span>
+  <span>Lifetime Access</span>
+  <span>₹199</span>
 </div>
 
 <button class="paybtn" onclick="pay()">Pay ₹1 via UPI</button>
 
-<div class="info">
-Pay only via PhonePe / Paytm / GPay<br>
-After payment, instant access via Telegram support
-</div>
-
-<button class="tgbtn" onclick="copyTG()">📋 Copy Telegram Username</button>
-
-<div class="footer">
-Need help? Chat with us on Telegram<br>
-⭐ 4.6 Rated • 500+ Members • Secure UPI<br>
-⏳ Offer ending soon
+<div class="tg">
+  Telegram Support<br>
+  <span class="username" onclick="copyTG()">@EliteExclusiveX</span>
 </div>
 
 </div>
 
-<div class="toast" id="toast">Someone just purchased 🎉</div>
+<div class="toast" id="toast">Telegram username copied</div>
 
 <script>
-/* UPI DEEP LINK */
 function pay(){
-location.href = "upi://pay?pa=Mswp.2520100425652180@axisbank&pn=EliteHub&am=1&cu=INR&tn=EliteHub Trial";
+  location.href =
+  "upi://pay?pa=Mswp.2520100425652180@axisbank&pn=EliteHub&am=1&cu=INR&tn=EliteHub Trial";
 }
 
-/* TELEGRAM COPY */
 function copyTG(){
-navigator.clipboard.writeText("@EliteExclusiveX");
-alert("Telegram username copied");
+  navigator.clipboard.writeText("@EliteExclusiveX");
+  const t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),1500);
 }
-
-/* COUNTDOWN */
-let t=900;
-setInterval(()=>{
-let m=Math.floor(t/60);
-let s=t%60;
-document.getElementById("countdown").innerText=
-m+":"+(s<10?"0":"")+s;
-t--; if(t<0)t=900;
-},1000);
-
-/* ONE-TIME POPUP */
-setTimeout(()=>{
-document.getElementById("toast").classList.add("show");
-setTimeout(()=>{document.getElementById("toast").classList.remove("show")},5000);
-},30000);
 </script>
 
 </body>
