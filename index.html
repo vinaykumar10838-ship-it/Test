@@ -16,45 +16,34 @@
   --hub:#00BFA5;
   --bg:#040b18;
   --card:#0b203b;
-  --text:#E0E0E0;
-  --price:#19b9ff;
-  --danger:#FF5252;
 }
 *{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
 
 body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  margin:0;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
   background:linear-gradient(135deg,#040b18,#071a2f,#040b18);
   color:#eaf7ff;
 }
 
 .card{
-  width:94%;
-  max-width:420px;
+  width:94%;max-width:420px;
   background:var(--card);
   border-radius:28px;
-  padding:26px 22px;
+  padding:26px 22px 30px;
   text-align:center;
   box-shadow:0 40px 90px rgba(0,0,0,.65);
 }
 
 .logo{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  margin:auto;
-  background:#000;
-  overflow:hidden;
-  box-shadow:0 0 40px rgba(0,230,118,.8);
+  width:110px;height:110px;border-radius:50%;
+  margin:auto;background:#000;overflow:hidden;
+  box-shadow:0 0 45px rgba(0,230,118,.7);
 }
 .logo img{width:100%;height:100%;object-fit:cover}
 
 .brand{
-  margin-top:16px;
+  margin-top:14px;
   font-size:30px;
   font-weight:900;
 }
@@ -68,69 +57,70 @@ body{
 }
 
 .notice{
-  margin:18px 0;
-  font-size:15px;
-  font-weight:800;
-  color:var(--danger);
+  margin:14px 0;
+  font-size:14px;
+  font-weight:700;
+  color:#00e5ff;
 }
 
-.panel{
+.plans{
   background:#06152c;
   border-radius:18px;
   padding:14px;
-  margin:16px 0;
+  margin-bottom:18px;
 }
-
 .plan{
   display:flex;
   justify-content:space-between;
-  padding:10px 12px;
-  background:#071c33;
-  border-radius:12px;
-  margin-bottom:8px;
-  font-size:14px;
+  padding:10px 6px;
   font-weight:700;
+  font-size:15px;
 }
-.plan span.price{color:var(--price)}
+.plan span:last-child{color:#00E676}
 
-.qr{
+.qrbox{
+  background:#06152c;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:18px;
+}
+.qrbox img{
   width:220px;
-  margin:12px auto;
-  border-radius:14px;
+  border-radius:16px;
   background:#fff;
   padding:10px;
 }
 
-.value{
-  font-size:18px;
-  font-weight:900;
-  color:var(--elite);
-  margin-top:8px;
+.upi{
+  margin-top:10px;
+  font-size:16px;
+  font-weight:800;
+  color:#00E676;
 }
 
 .btn{
+  margin-top:12px;
   width:100%;
   border:none;
   border-radius:14px;
   padding:12px;
-  margin-top:10px;
   font-size:15px;
   font-weight:800;
   cursor:pointer;
 }
 
-.btn-upi{background:linear-gradient(180deg,#44ffb8,#1fd79a)}
-.btn-tg{background:linear-gradient(180deg,#1bbcff,#0d8fcf)}
+.btn-upi{
+  background:linear-gradient(180deg,#44ffb8,#1fd79a);
+  color:#002018;
+}
 
-.instruction{
-  margin-top:12px;
-  font-size:13px;
-  color:#9edfff;
-  line-height:1.5;
+.btn-tg{
+  background:linear-gradient(180deg,#1bbcff,#0d8fcf);
+  color:#001018;
 }
 
 .footer{
-  margin-top:14px;
+  margin-top:12px;
   font-size:12px;
   color:#9edfff;
 }
@@ -157,7 +147,6 @@ body{
 
 <div class="card">
 
-  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
@@ -167,69 +156,50 @@ body{
   </div>
   <div class="subtitle">Premium Telegram Access</div>
 
-  <div class="notice">❌ Free Trial Expired</div>
+  <div class="notice">🔥 Limited Offer – ₹1 Trial Available</div>
 
-  <!-- PLANS -->
-  <div class="panel">
-    <div class="plan">
-      <span>1-Day Trial</span>
-      <span class="price">₹29</span>
-    </div>
-    <div class="plan">
-      <span>Weekly Access</span>
-      <span class="price">₹49</span>
-    </div>
-    <div class="plan">
-      <span>Monthly Access</span>
-      <span class="price">₹99</span>
-    </div>
-    <div class="plan">
-      <span>Lifetime Access</span>
-      <span class="price">₹199</span>
-    </div>
+  <div class="plans">
+    <div class="plan"><span>1-Day Trial</span><span>₹1</span></div>
+    <div class="plan"><span>Weekly Access</span><span>₹49</span></div>
+    <div class="plan"><span>Monthly Access</span><span>₹99</span></div>
+    <div class="plan"><span>Lifetime Access</span><span>₹199</span></div>
   </div>
 
-  <!-- PAYMENT -->
-  <div class="panel">
+  <div class="qrbox">
     <div class="subtitle">Scan & Pay (UPI)</div>
 
-    <img src="upi-qr.png" class="qr" alt="UPI QR">
+    <img src="upi-qr.png.png" alt="UPI QR">
 
-    <div class="value" id="upi">Q919329672@ybl</div>
+    <div class="upi">Q919329672@ybl</div>
 
-    <button class="btn btn-upi" onclick="copyText('upi')">
-      📋 Copy UPI ID
-    </button>
+    <button class="btn btn-upi" onclick="copyUPI()">📋 Copy UPI ID</button>
   </div>
 
-  <!-- TELEGRAM -->
-  <div class="panel">
-    <div class="subtitle">Contact on Telegram</div>
-    <div class="value" id="tg">@EliteExclusiveX</div>
-
-    <button class="btn btn-tg" onclick="copyText('tg')">
-      📩 Copy Telegram Username
-    </button>
-  </div>
-
-  <div class="instruction">
-    1️⃣ Pay using UPI QR or ID<br>
-    2️⃣ Copy Telegram username<br>
-    3️⃣ Search on Telegram & send payment screenshot
-  </div>
+  <button class="btn btn-tg" onclick="copyTG()">📩 Copy Telegram Username</button>
 
   <div class="footer">
-    EliteHub Official • Secure • Verified
+    Contact on Telegram: <b>@EliteExclusiveX</b><br>
+    EliteHub • Secure • Verified
   </div>
 
 </div>
 
-<div class="toast" id="toast">✔ Copied</div>
+<div class="toast" id="toast">Copied</div>
 
 <script>
-function copyText(id){
-  navigator.clipboard.writeText(document.getElementById(id).textContent);
+function copyUPI(){
+  navigator.clipboard.writeText("Q919329672@ybl");
+  showToast("✔ UPI ID Copied");
+}
+
+function copyTG(){
+  navigator.clipboard.writeText("@EliteExclusiveX");
+  showToast("✔ Telegram Username Copied");
+}
+
+function showToast(msg){
   const t=document.getElementById('toast');
+  t.textContent=msg;
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),1200);
 }
