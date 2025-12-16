@@ -2,70 +2,72 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EliteHub – Access</title>
+<title>EliteHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- 🚫 NO CACHE -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
 <style>
 *{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
+
 body{
-  margin:0;min-height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  background:#0d1b14;
-  color:#eafff5;
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0b1f18;
+  color:#e8fff4;
 }
+
 .card{
-  width:94%;max-width:420px;
-  background:#0f241a;
+  width:94%;
+  max-width:420px;
+  background:#0f2a21;
   border-radius:22px;
   padding:24px;
   text-align:center;
-  box-shadow:0 25px 60px rgba(0,0,0,.6);
 }
+
 .logo{
-  width:110px;height:110px;border-radius:50%;
-  margin:0 auto 10px;overflow:hidden;
+  width:110px;height:110px;
+  margin:0 auto 8px;
+  border-radius:50%;
+  overflow:hidden;
 }
 .logo img{width:100%;height:100%;object-fit:cover}
 
 h1{
-  margin:6px 0 4px;
+  margin:6px 0;
   font-size:30px;
-  font-weight:900;
-  color:#2dff9a;
-}
-
-.trust{
-  margin-bottom:16px;
-  font-size:14px;
-  color:#c9ffe6;
-}
-
-.plans{margin:18px 0}
-.plan{
-  display:flex;justify-content:space-between;align-items:center;
-  background:#132b21;
-  border-radius:16px;
-  padding:14px 16px;
-  margin-bottom:10px;
-  font-size:16px;
   font-weight:800;
-  cursor:pointer;
-  border:2px solid transparent;
+  color:#00e676;
 }
-.plan.active{border-color:#2dff9a}
+
+.plan{
+  display:flex;
+  justify-content:space-between;
+  background:#0e2a21;
+  padding:14px 16px;
+  border-radius:16px;
+  margin-bottom:10px;
+  font-weight:700;
+}
+
+.plan.active{
+  border:2px solid #00e676;
+}
 
 .badge{
-  margin-left:8px;
-  background:#ffcf4a;
-  color:#2b2b2b;
   font-size:11px;
-  font-weight:900;
   padding:4px 8px;
   border-radius:10px;
+  background:#1b3f32;
+  color:#00e676;
+  margin-left:6px;
 }
 
 .pay-btn{
@@ -74,35 +76,58 @@ h1{
   border:none;
   border-radius:18px;
   font-size:18px;
-  font-weight:900;
-  cursor:pointer;
-  background:linear-gradient(180deg,#2dff9a,#1bcf7a);
-  color:#052014;
-  margin-top:10px;
+  font-weight:800;
+  margin-top:12px;
+  background:linear-gradient(135deg,#00e676,#00c853);
+  color:#003820;
 }
 
-.lock{
-  margin-top:10px;
+.info{
+  margin-top:8px;
   font-size:13px;
-  color:#9fffd6;
+  color:#7ed9b2;
 }
 
-.support{
-  margin-top:18px;
-  font-size:15px;
+/* TELEGRAM */
+.tg{
+  margin-top:14px;
+  font-size:18px;
+  font-weight:800;
+  color:#00e676;
+  cursor:pointer;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%) scale(0.9);
+  background:#000;
+  color:#00e676;
+  padding:12px 20px;
+  border-radius:22px;
+  font-size:14px;
   font-weight:700;
-  color:#2dff9a;
+  opacity:0;
+  transition:all .25s ease;
+  z-index:9999;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) scale(1);
 }
 
-.footer{
-  margin-top:6px;
-  font-size:12px;
-  color:#8fd9b8;
+/* HIDDEN INPUT */
+#copyInput{
+  position:absolute;
+  left:-9999px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="card">
 
   <div class="logo">
@@ -110,56 +135,50 @@ h1{
   </div>
 
   <h1>EliteHub</h1>
-  <div class="trust">⭐ Trusted by 1,000+ users</div>
 
-  <div class="plans">
-    <div class="plan active" data-amount="1">
-      <div>1-Day Trial <span class="badge">LIMITED</span></div>
-      <div>₹1</div>
-    </div>
-
-    <div class="plan" data-amount="99">
-      <div>Monthly <span class="badge">MOST POPULAR</span></div>
-      <div>₹99</div>
-    </div>
-
-    <div class="plan" data-amount="199">
-      <div>Lifetime <span class="badge">BEST VALUE</span></div>
-      <div>₹199</div>
-    </div>
+  <div class="plan active">
+    <div>1-Day Trial <span class="badge">LIMITED</span></div>
+    <div>₹1</div>
   </div>
 
-  <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
-
-  <div class="lock">🔒 Instant Access After Payment</div>
-
-  <div class="support">Support : @EliteExclusiveX</div>
-
-  <div class="footer">
-    EliteHub Official • Secure Payment • One-time payment
+  <div class="plan">
+    <div>Monthly <span class="badge">MOST POPULAR</span></div>
+    <div>₹99</div>
   </div>
+
+  <div class="plan">
+    <div>Lifetime <span class="badge">BEST VALUE</span></div>
+    <div>₹199</div>
+  </div>
+
+  <button class="pay-btn">Pay ₹1 Securely</button>
+  <div class="info">🔒 Instant Access After Payment</div>
+
+  <!-- TELEGRAM -->
+  <div class="tg" onclick="copyTelegram()">Support : @EliteExclusiveX</div>
+
 </div>
 
+<!-- HIDDEN INPUT -->
+<input id="copyInput" value="@EliteExclusiveX">
+
+<!-- TOAST -->
+<div class="toast" id="toast">✔ Username Copied</div>
+
 <script>
-const UPI_ID="Mswp.2520100425652180@axisbank";
-let selectedAmount=1;
-const plans=document.querySelectorAll(".plan");
-const payBtn=document.getElementById("payBtn");
+function copyTelegram(){
+  var input = document.getElementById("copyInput");
+  input.select();
+  input.setSelectionRange(0, 99999); // Android fix
+  document.execCommand("copy");
 
-plans.forEach(p=>{
-  p.onclick=()=>{
-    plans.forEach(x=>x.classList.remove("active"));
-    p.classList.add("active");
-    selectedAmount=p.dataset.amount;
-    payBtn.innerText=`Pay ₹${selectedAmount} Securely`;
-  }
-});
-
-payBtn.onclick=()=>{
-  location.href=
-   `upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${selectedAmount}&cu=INR&tn=EliteHub%20Access`;
-};
+  var toast = document.getElementById("toast");
+  toast.classList.add("show");
+  setTimeout(function(){
+    toast.classList.remove("show");
+  },1500);
+}
 </script>
 
 </body>
-  </html>
+</html>
