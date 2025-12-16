@@ -2,99 +2,143 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EliteHub</title>
+<title>EliteHub – Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- 🚫 NO CACHE -->
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+<!-- 🔴 STRONG NO-CACHE -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 
 <style>
+:root{
+  --green:#00E676;
+  --green-dark:#00C853;
+  --bg:#0b1f18;
+  --card:#102a22;
+  --text:#e8fff4;
+  --muted:#7ed9b2;
+}
+
 *{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
 
 body{
   margin:0;
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
-  background:#0b1f18;
-  color:#e8fff4;
+  align-items:center;
+  background:#081612;
+  color:var(--text);
 }
 
 .card{
   width:94%;
   max-width:420px;
-  background:#0f2a21;
+  background:linear-gradient(180deg,#0b1f18,#081612);
   border-radius:22px;
   padding:24px;
   text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
+/* LOGO */
 .logo{
-  width:110px;height:110px;
+  width:110px;
+  height:110px;
   margin:0 auto 8px;
   border-radius:50%;
   overflow:hidden;
 }
-.logo img{width:100%;height:100%;object-fit:cover}
-
-h1{
-  margin:6px 0;
-  font-size:30px;
-  font-weight:800;
-  color:#00e676;
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
+h1{
+  margin:8px 0 6px;
+  font-size:30px;
+  font-weight:800;
+  color:var(--green);
+}
+
+.trust{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+
+/* PLANS */
 .plan{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   background:#0e2a21;
-  padding:14px 16px;
   border-radius:16px;
+  padding:14px 16px;
   margin-bottom:10px;
+  font-size:16px;
   font-weight:700;
+  border:2px solid transparent;
+  cursor:pointer;
 }
 
 .plan.active{
-  border:2px solid #00e676;
+  border-color:var(--green);
 }
 
 .badge{
   font-size:11px;
   padding:4px 8px;
   border-radius:10px;
-  background:#1b3f32;
-  color:#00e676;
   margin-left:6px;
+  background:rgba(0,230,118,.15);
+  color:var(--green);
+  font-weight:700;
 }
 
+/* PAY BUTTON */
 .pay-btn{
   width:100%;
+  margin-top:12px;
   padding:16px;
   border:none;
   border-radius:18px;
   font-size:18px;
   font-weight:800;
-  margin-top:12px;
-  background:linear-gradient(135deg,#00e676,#00c853);
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
   color:#003820;
 }
 
+/* INFO */
 .info{
-  margin-top:8px;
+  margin-top:10px;
   font-size:13px;
-  color:#7ed9b2;
+  color:var(--muted);
 }
 
-/* TELEGRAM */
+/* TELEGRAM CLICK */
 .tg{
   margin-top:14px;
-  font-size:18px;
+  font-size:17px;
   font-weight:800;
-  color:#00e676;
+  color:var(--green);
   cursor:pointer;
+  user-select:none;
+}
+
+/* CLICK ANIMATION */
+.tg:active{
+  transform:scale(0.95);
+}
+
+/* FOOTER */
+.footer{
+  margin-top:6px;
+  font-size:12px;
+  color:#6bbf9b;
 }
 
 /* TOAST */
@@ -104,24 +148,18 @@ h1{
   left:50%;
   transform:translateX(-50%) scale(0.9);
   background:#000;
-  color:#00e676;
+  color:var(--green);
   padding:12px 20px;
   border-radius:22px;
   font-size:14px;
   font-weight:700;
   opacity:0;
-  transition:all .25s ease;
+  transition:all .3s ease;
   z-index:9999;
 }
 .toast.show{
   opacity:1;
   transform:translateX(-50%) scale(1);
-}
-
-/* HIDDEN INPUT */
-#copyInput{
-  position:absolute;
-  left:-9999px;
 }
 </style>
 </head>
@@ -130,54 +168,81 @@ h1{
 
 <div class="card">
 
+  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
 
   <h1>EliteHub</h1>
+  <div class="trust">⭐ Trusted by 1,000+ users</div>
 
-  <div class="plan active">
+  <!-- PLANS -->
+  <div class="plan active" data-amount="1">
     <div>1-Day Trial <span class="badge">LIMITED</span></div>
     <div>₹1</div>
   </div>
 
-  <div class="plan">
+  <div class="plan" data-amount="99">
     <div>Monthly <span class="badge">MOST POPULAR</span></div>
     <div>₹99</div>
   </div>
 
-  <div class="plan">
+  <div class="plan" data-amount="199">
     <div>Lifetime <span class="badge">BEST VALUE</span></div>
     <div>₹199</div>
   </div>
 
-  <button class="pay-btn">Pay ₹1 Securely</button>
+  <!-- PAY -->
+  <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
   <div class="info">🔒 Instant Access After Payment</div>
 
   <!-- TELEGRAM -->
-  <div class="tg" onclick="copyTelegram()">Support : @EliteExclusiveX</div>
+  <div class="tg" id="tgHandle">@EliteExclusiveX</div>
+  <div class="footer">EliteHub Official • Secure Payment • One-time payment</div>
 
 </div>
-
-<!-- HIDDEN INPUT -->
-<input id="copyInput" value="@EliteExclusiveX">
 
 <!-- TOAST -->
 <div class="toast" id="toast">✔ Username Copied</div>
 
 <script>
-function copyTelegram(){
-  var input = document.getElementById("copyInput");
-  input.select();
-  input.setSelectionRange(0, 99999); // Android fix
-  document.execCommand("copy");
+/* CONFIG */
+const UPI_ID = "Mswp.2520100425652180@axisbank";
+const TG_USERNAME = "@EliteExclusiveX";
 
-  var toast = document.getElementById("toast");
+/* PLAN SWITCH */
+let amount = 1;
+const plans = document.querySelectorAll('.plan');
+const payBtn = document.getElementById('payBtn');
+
+plans.forEach(p=>{
+  p.addEventListener('click',()=>{
+    plans.forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    amount=p.dataset.amount;
+    payBtn.textContent=`Pay ₹${amount} Securely`;
+  });
+});
+
+/* PAY */
+payBtn.addEventListener('click',()=>{
+  const upi=`upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
+  window.location.href=upi;
+});
+
+/* COPY TELEGRAM – FULLY WORKING */
+document.getElementById("tgHandle").addEventListener("click",()=>{
+  const temp=document.createElement("textarea");
+  temp.value=TG_USERNAME;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  document.body.removeChild(temp);
+
+  const toast=document.getElementById("toast");
   toast.classList.add("show");
-  setTimeout(function(){
-    toast.classList.remove("show");
-  },1500);
-}
+  setTimeout(()=>toast.classList.remove("show"),1400);
+});
 </script>
 
 </body>
