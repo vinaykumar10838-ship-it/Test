@@ -6,52 +6,64 @@
 <title>EliteHub Access</title>
 
 <style>
+:root {
+  --green-main: #00E676;
+  --green-dark: #00C853;
+  --bg-main: #020C09;
+  --bg-card: #0B1F18;
+  --text-main: #E8FFF4;
+  --text-muted: #7ED9B2;
+  --shadow-green: 0 0 25px rgba(0, 230, 118, 0.6);
+}
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 body{
   min-height:100vh;
-  background: radial-gradient(circle at top, #0f3d2e, #071a14 70%);
+  background: radial-gradient(
+    circle at top,
+    #0F3D2E 0%,
+    #071A14 45%,
+    #020C09 100%
+  );
   display:flex;
   justify-content:center;
   align-items:center;
-  color:#fff;
+  color:var(--text-main);
 }
 
 .card{
   width:100%;
   max-width:380px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
+  background:rgba(11,31,24,0.95);
   border-radius:20px;
-  padding:24px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  padding:26px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
   text-align:center;
 }
 
 .logo{
-  width:90px;
-  height:90px;
+  width:92px;
+  height:92px;
   border-radius:50%;
-  margin:0 auto 10px;
+  margin:0 auto 12px;
   background:#000;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 0 25px rgba(0,255,150,0.5);
+  box-shadow:var(--shadow-green);
 }
-.logo img{
-  width:65px;
-}
+.logo img{width:64px}
 
 h1{
-  margin:10px 0 20px;
+  margin-bottom:22px;
   font-weight:600;
-  letter-spacing:0.5px;
+  letter-spacing:0.4px;
 }
 
 .plan{
@@ -61,15 +73,19 @@ h1{
   padding:14px 16px;
   margin-bottom:12px;
   border-radius:14px;
-  background:rgba(255,255,255,0.08);
+  background:#0E2A21;
+  border:1px solid #134E3A;
+  color:#CFFFE5;
   cursor:pointer;
   transition:0.25s;
 }
+
 .plan.active{
-  background:linear-gradient(135deg,#1ddf91,#12b76a);
-  color:#000;
+  background:linear-gradient(135deg,var(--green-main),var(--green-dark));
+  color:#003820;
+  border:none;
+  box-shadow:var(--shadow-green);
   font-weight:600;
-  box-shadow:0 0 20px rgba(29,223,145,0.6);
 }
 
 .pay-btn{
@@ -77,43 +93,57 @@ h1{
   padding:16px;
   width:100%;
   border:none;
-  border-radius:16px;
-  font-size:18px;
+  border-radius:14px;
+  font-size:17px;
   font-weight:600;
-  color:#000;
-  background:linear-gradient(135deg,#1ddf91,#12b76a);
+  color:#003820;
+  background:linear-gradient(135deg,var(--green-main),var(--green-dark));
   cursor:pointer;
-  box-shadow:0 0 25px rgba(29,223,145,0.7);
+  transition:0.25s;
+  box-shadow:var(--shadow-green);
+}
+
+.pay-btn:hover{
+  background:linear-gradient(135deg,var(--green-dark),var(--green-main));
+  box-shadow:0 0 30px rgba(0,230,118,0.8);
 }
 
 .secure{
   margin-top:10px;
   font-size:12px;
-  opacity:0.85;
+  color:#9FFFD6;
+  background:rgba(0,230,118,0.12);
+  padding:6px 10px;
+  border-radius:10px;
+  display:inline-block;
 }
 
 .telegram{
   margin-top:18px;
   padding:14px;
   border-radius:14px;
-  background:rgba(0,136,204,0.15);
+  background:rgba(0,230,118,0.08);
   cursor:pointer;
+  color:var(--green-main);
   position:relative;
-  transition:0.3s;
+  transition:0.25s;
 }
+
 .telegram.copied{
-  background:rgba(0,255,150,0.25);
+  background:rgba(0,230,118,0.18);
 }
+
 .copy-anim{
   position:absolute;
   top:-10px;
-  right:12px;
+  right:14px;
   font-size:12px;
-  opacity:0;
+  color:var(--green-main);
   animation:copy 1.2s ease forwards;
 }
+
 @keyframes copy{
-  0%{opacity:0; transform:translateY(5px);}
+  0%{opacity:0; transform:translateY(6px);}
   30%{opacity:1;}
   100%{opacity:0; transform:translateY(-8px);}
 }
@@ -131,27 +161,22 @@ h1{
   <h1>EliteHub</h1>
 
   <div class="plan active" data-price="1">
-    <span>1-Day Trial</span>
-    <span>₹1</span>
+    <span>1-Day Trial</span><span>₹1</span>
   </div>
 
   <div class="plan" data-price="99">
-    <span>Monthly Access</span>
-    <span>₹99</span>
+    <span>Monthly Access</span><span>₹99</span>
   </div>
 
   <div class="plan" data-price="199">
-    <span>Lifetime Access</span>
-    <span>₹199</span>
+    <span>Lifetime Access</span><span>₹199</span>
   </div>
 
   <button class="pay-btn" id="payBtn">
     Pay ₹1 • Get Instant Access
   </button>
 
-  <div class="secure">
-    🔒 Secure Payment • Instant Access
-  </div>
+  <div class="secure">🔒 Secure Payment • Instant Access</div>
 
   <div class="telegram" id="tgCopy">
     Need help? Chat on Telegram<br>
@@ -164,28 +189,26 @@ h1{
 let selectedPrice = 1;
 const plans = document.querySelectorAll(".plan");
 const payBtn = document.getElementById("payBtn");
+const tg = document.getElementById("tgCopy");
 
-plans.forEach(plan=>{
-  plan.addEventListener("click",()=>{
-    plans.forEach(p=>p.classList.remove("active"));
-    plan.classList.add("active");
-    selectedPrice = plan.dataset.price;
-    payBtn.innerText = `Pay ₹${selectedPrice} • Get Instant Access`;
-  });
+plans.forEach(p=>{
+  p.onclick=()=>{
+    plans.forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    selectedPrice=p.dataset.price;
+    payBtn.innerText=`Pay ₹${selectedPrice} • Get Instant Access`;
+  }
 });
 
-document.getElementById("tgCopy").addEventListener("click",()=>{
+tg.onclick=()=>{
   navigator.clipboard.writeText("@EliteExclusiveX");
-  const anim = document.createElement("div");
-  anim.className="copy-anim";
-  anim.innerText="Copied!";
-  tgCopy.appendChild(anim);
-  tgCopy.classList.add("copied");
-  setTimeout(()=>{
-    anim.remove();
-    tgCopy.classList.remove("copied");
-  },1200);
-});
+  tg.classList.add("copied");
+  const a=document.createElement("div");
+  a.className="copy-anim";
+  a.innerText="Copied!";
+  tg.appendChild(a);
+  setTimeout(()=>{a.remove();tg.classList.remove("copied")},1200);
+};
 </script>
 
 </body>
