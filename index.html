@@ -2,54 +2,43 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EliteHub – Access Plans</title>
+<title>EliteHub – Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root{
-  --bg:#020c09;
-  --card:#0b1f18;
-  --card-border:#134e3a;
-  --green:#00e676;
-  --green-dark:#00c853;
-  --text:#e8fff4;
-  --muted:#7ed9b2;
-  --yellow:#ffd54f;
-}
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 
-*{
-  box-sizing:border-box;
-  font-family:Segoe UI,Arial,sans-serif;
-}
+<style>
+*{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
 
 body{
   margin:0;
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
-  background:var(--bg);
-  color:var(--text);
+  align-items:center;
+  background:#0a0f0d;
+  color:#eafff3;
 }
 
 .card{
   width:94%;
-  max-width:420px;
-  background:var(--card);
+  max-width:430px;
+  background:#0f1a15;
   border-radius:22px;
   padding:24px;
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
 }
 
-/* LOGO */
+/* LOGO – NO COLOR AROUND */
 .logo{
   width:110px;
   height:110px;
   border-radius:50%;
-  margin:0 auto 10px;
+  margin:0 auto 8px;
   overflow:hidden;
-  border:2px solid var(--green-dark);
 }
 .logo img{
   width:100%;
@@ -57,90 +46,78 @@ body{
   object-fit:cover;
 }
 
-/* TITLE */
 h1{
-  margin:8px 0 14px;
+  margin:8px 0 16px;
   font-size:30px;
   font-weight:800;
-  color:var(--text);
+  color:#eafff3;
 }
 
 /* PLANS */
-.plans{
-  margin-bottom:16px;
-}
-
 .plan{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:14px 16px;
   margin-bottom:10px;
-  border-radius:14px;
-  background:#0e2a21;
-  border:2px solid transparent;
+  border-radius:16px;
   font-size:16px;
   font-weight:700;
   cursor:pointer;
+  border:2px solid transparent;
 }
+
+/* Individual colors */
+.plan.trial{background:#12261d;color:#9fffd3}
+.plan.month{background:#1c2220;color:#ffd88a}
+.plan.life{background:#15221b;color:#b8ffdc}
 
 .plan.active{
-  border-color:var(--green);
+  border-color:#00e676;
 }
 
-.badge{
-  background:var(--yellow);
-  color:#2b2b2b;
-  font-size:11px;
-  font-weight:900;
-  padding:4px 8px;
-  border-radius:10px;
-  margin-left:8px;
-}
-
-/* PAY BUTTON */
 .pay-btn{
   width:100%;
+  margin-top:14px;
   padding:16px;
   border:none;
-  border-radius:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#00e676,#00c853);
+  color:#003820;
   font-size:18px;
   font-weight:800;
   cursor:pointer;
-  background:linear-gradient(135deg,var(--green),var(--green-dark));
-  color:#003820;
 }
 
 .secure-text{
-  margin-top:8px;
+  margin-top:10px;
   font-size:13px;
-  color:var(--muted);
+  color:#9fffd6;
 }
 
-/* TELEGRAM */
-.telegram{
-  margin-top:18px;
-  font-size:16px;
+/* Telegram */
+.tg{
+  margin-top:14px;
+  font-size:18px;
   font-weight:800;
-  color:var(--green);
+  color:#00e676;
   cursor:pointer;
 }
 
-/* FOOTER */
 .footer{
   margin-top:6px;
   font-size:12px;
-  color:var(--muted);
+  color:#8fd9b9;
 }
 
-/* TOAST */
+/* Toast */
 .toast{
   position:fixed;
   bottom:20px;
   left:50%;
   transform:translateX(-50%);
   background:#000;
-  color:var(--green);
+  color:#00e676;
   padding:10px 18px;
   border-radius:20px;
   font-size:14px;
@@ -156,44 +133,39 @@ h1{
 
 <div class="card">
 
-  <!-- LOGO -->
   <div class="logo">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s320/85938.jpg">
   </div>
 
   <h1>EliteHub</h1>
 
-  <!-- PLANS -->
-  <div class="plans">
-
-    <div class="plan active" data-amount="1">
-      <div>1-Day Trial</div>
-      <div>₹1</div>
-    </div>
-
-    <div class="plan" data-amount="99">
-      <div>Monthly <span class="badge">MOST POPULAR</span></div>
-      <div>₹99</div>
-    </div>
-
-    <div class="plan" data-amount="199">
-      <div>Lifetime <span class="badge">BEST VALUE</span></div>
-      <div>₹199</div>
-    </div>
-
+  <div class="plan trial active" data-amount="1">
+    <div>1-Day Trial</div>
+    <div>₹1</div>
   </div>
 
-  <!-- PAY -->
-  <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
-  <div class="secure-text">🔒 Secure Payment • Instant Access After Payment</div>
+  <div class="plan month" data-amount="99">
+    <div>Monthly</div>
+    <div>₹99</div>
+  </div>
 
-  <!-- TELEGRAM -->
-  <div class="telegram" onclick="copyTG()">
+  <div class="plan life" data-amount="199">
+    <div>Lifetime <small>(Best Value)</small></div>
+    <div>₹199</div>
+  </div>
+
+  <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
+
+  <div class="secure-text">
+    🔒 Secure Payment • Instant Access After Payment
+  </div>
+
+  <div class="tg" onclick="copyTG()">
     @EliteExclusiveX
   </div>
 
   <div class="footer">
-    EliteHub Official • Secure UPI • One-time payment
+    EliteHub Official • Secure Payment • One-time payment
   </div>
 
 </div>
@@ -204,29 +176,29 @@ h1{
 const UPI_ID = "Mswp.2520100425652180@axisbank";
 const TG_USERNAME = "@EliteExclusiveX";
 
-let selectedAmount = 1;
+let amount = 1;
 const plans = document.querySelectorAll('.plan');
-const payBtn = document.getElementById('payBtn');
+const btn = document.getElementById('payBtn');
 
 plans.forEach(p=>{
-  p.addEventListener('click', ()=>{
+  p.onclick=()=>{
     plans.forEach(x=>x.classList.remove('active'));
     p.classList.add('active');
-    selectedAmount = p.getAttribute('data-amount');
-    payBtn.textContent = `Pay ₹${selectedAmount} Securely`;
-  });
+    amount = p.dataset.amount;
+    btn.textContent = `Pay ₹${amount} Securely`;
+  }
 });
 
-payBtn.addEventListener('click', ()=>{
+btn.onclick=()=>{
   const upi =
     "upi://pay"+
-    `?pa=${encodeURIComponent(UPI_ID)}`+
+    `?pa=${UPI_ID}`+
     "&pn=EliteHub"+
-    `&am=${encodeURIComponent(selectedAmount)}`+
+    `&am=${amount}`+
     "&cu=INR"+
     "&tn=EliteHub%20Access";
-  window.location.href = upi;
-});
+  location.href = upi;
+};
 
 function copyTG(){
   navigator.clipboard.writeText(TG_USERNAME);
