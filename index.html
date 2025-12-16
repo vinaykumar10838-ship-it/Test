@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EliteHub – Premium Access</title>
+<title>EliteHub – Android Instant Pay</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -30,114 +29,57 @@ body{
   width:94%;max-width:420px;
   background:var(--card);
   border-radius:28px;
-  padding:26px 22px 30px;
+  padding:26px 22px 28px;
   text-align:center;
   box-shadow:0 40px 90px rgba(0,0,0,.65);
 }
 
 .logo{
   width:110px;height:110px;border-radius:50%;
-  margin:auto;background:#000;overflow:hidden;
-  box-shadow:0 0 45px rgba(0,230,118,.7);
+  margin:auto;overflow:hidden;
+  box-shadow:0 0 40px rgba(0,230,118,.7);
 }
 .logo img{width:100%;height:100%;object-fit:cover}
 
-.brand{
-  margin-top:14px;
-  font-size:30px;
-  font-weight:900;
-}
-.elite{color:var(--elite)}
-.hub{color:var(--hub)}
+.brand{margin-top:14px;font-size:30px;font-weight:900}
+.elite{color:var(--elite)} .hub{color:var(--hub)}
+.subtitle{font-size:14px;color:#9edfff;margin-top:4px}
 
-.subtitle{
-  font-size:14px;
-  color:#9edfff;
-  margin-top:4px;
+.loader{
+  margin:18px 0;font-size:18px;font-weight:800;color:#00E676;
 }
 
-.notice{
-  margin:14px 0;
-  font-size:14px;
-  font-weight:700;
-  color:#00e5ff;
+.panel{
+  background:#06152c;border-radius:18px;
+  padding:14px;margin:16px 0;
 }
 
-.plans{
-  background:#06152c;
-  border-radius:18px;
-  padding:14px;
-  margin-bottom:18px;
-}
 .plan{
-  display:flex;
-  justify-content:space-between;
-  padding:10px 6px;
-  font-weight:700;
-  font-size:15px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 8px;font-weight:800;margin-bottom:6px;
 }
 .plan span:last-child{color:#00E676}
 
-.qrbox{
-  background:#06152c;
-  border-radius:18px;
-  padding:16px;
-  margin-bottom:18px;
-}
-.qrbox img{
-  width:220px;
-  border-radius:16px;
-  background:#fff;
-  padding:10px;
-}
-
-.upi{
-  margin-top:10px;
-  font-size:16px;
-  font-weight:800;
-  color:#00E676;
-}
-
 .btn{
-  margin-top:12px;
-  width:100%;
-  border:none;
-  border-radius:14px;
-  padding:12px;
-  font-size:15px;
-  font-weight:800;
-  cursor:pointer;
+  width:100%;border:none;border-radius:14px;
+  padding:12px;margin-top:10px;
+  font-size:15px;font-weight:800;cursor:pointer;
+}
+.btn-pay{background:linear-gradient(180deg,#44ffb8,#1fd79a);color:#002018}
+.btn-copy{background:linear-gradient(180deg,#1bbcff,#0d8fcf);color:#001018}
+
+.value{
+  font-size:18px;font-weight:900;color:#00E676;margin-top:8px;
 }
 
-.btn-upi{
-  background:linear-gradient(180deg,#44ffb8,#1fd79a);
-  color:#002018;
-}
-
-.btn-tg{
-  background:linear-gradient(180deg,#1bbcff,#0d8fcf);
-  color:#001018;
-}
-
-.footer{
-  margin-top:12px;
-  font-size:12px;
-  color:#9edfff;
-}
+.footer{margin-top:12px;font-size:12px;color:#9edfff}
 
 .toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
+  position:fixed;bottom:20px;left:50%;
   transform:translateX(-50%);
-  background:#000;
-  color:#00ffb2;
-  padding:10px 18px;
-  border-radius:20px;
-  font-size:14px;
-  font-weight:700;
-  opacity:0;
-  transition:.3s;
+  background:#000;color:#00ffb2;
+  padding:10px 18px;border-radius:20px;
+  font-size:14px;font-weight:700;opacity:0;transition:.3s;
 }
 .toast.show{opacity:1}
 </style>
@@ -151,55 +93,74 @@ body{
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
 
-  <div class="brand">
-    <span class="elite">Elite</span><span class="hub">Hub</span>
-  </div>
-  <div class="subtitle">Premium Telegram Access</div>
+  <div class="brand"><span class="elite">Elite</span><span class="hub">Hub</span></div>
+  <div class="subtitle">Android Instant Payment</div>
 
-  <div class="notice">🔥 Limited Offer – ₹1 Trial Available</div>
+  <div class="loader" id="loader">Preparing payment… 3s</div>
 
-  <div class="plans">
+  <!-- PLANS -->
+  <div class="panel" id="plans" style="display:none">
     <div class="plan"><span>1-Day Trial</span><span>₹1</span></div>
-    <div class="plan"><span>Weekly Access</span><span>₹49</span></div>
-    <div class="plan"><span>Monthly Access</span><span>₹99</span></div>
-    <div class="plan"><span>Lifetime Access</span><span>₹199</span></div>
+    <button class="btn btn-pay" onclick="payNow(1)">Pay ₹1</button>
+
+    <div class="plan"><span>Weekly</span><span>₹49</span></div>
+    <button class="btn btn-pay" onclick="payNow(49)">Pay ₹49</button>
+
+    <div class="plan"><span>Monthly</span><span>₹99</span></div>
+    <button class="btn btn-pay" onclick="payNow(99)">Pay ₹99</button>
+
+    <div class="plan"><span>Lifetime</span><span>₹199</span></div>
+    <button class="btn btn-pay" onclick="payNow(199)">Pay ₹199</button>
   </div>
 
-  <div class="qrbox">
-    <div class="subtitle">Scan & Pay (UPI)</div>
-
-    <img src="upi-qr.png.png" alt="UPI QR">
-
-    <div class="upi">Q919329672@ybl</div>
-
-    <button class="btn btn-upi" onclick="copyUPI()">📋 Copy UPI ID</button>
+  <!-- UPI FALLBACK -->
+  <div class="panel" id="upiBox" style="display:none">
+    <div class="subtitle">UPI ID (Backup)</div>
+    <div class="value" id="upi">Q919329672@ybl</div>
+    <button class="btn btn-copy" onclick="copyText('upi')">📋 Copy UPI ID</button>
   </div>
 
-  <button class="btn btn-tg" onclick="copyTG()">📩 Copy Telegram Username</button>
-
-  <div class="footer">
-    Contact on Telegram: <b>@EliteExclusiveX</b><br>
-    EliteHub • Secure • Verified
+  <!-- TELEGRAM -->
+  <div class="panel" id="tgBox" style="display:none">
+    <div class="subtitle">Contact on Telegram</div>
+    <div class="value" id="tg">@EliteExclusiveX</div>
+    <button class="btn btn-copy" onclick="copyText('tg')">📩 Copy Telegram Username</button>
   </div>
+
+  <div class="footer">Android only • Secure • Manual verification</div>
 
 </div>
 
-<div class="toast" id="toast">Copied</div>
+<div class="toast" id="toast">✔ Copied</div>
 
 <script>
-function copyUPI(){
-  navigator.clipboard.writeText("Q919329672@ybl");
-  showToast("✔ UPI ID Copied");
+/* 3s loader */
+let t=3;
+const l=setInterval(()=>{
+  t--;
+  document.getElementById('loader').textContent=`Preparing payment… ${t}s`;
+  if(t<=0){
+    clearInterval(l);
+    loader.style.display='none';
+    plans.style.display='block';
+    upiBox.style.display='block';
+    tgBox.style.display='block';
+  }
+},1000);
+
+/* ANDROID UPI INTENT */
+function payNow(amount){
+  const upi="Q919329672@ybl";
+  const name="EliteHub";
+  const url=`upi://pay?pa=${upi}&pn=${name}&am=${amount}&cu=INR`;
+  window.location.href=url;
+  setTimeout(()=>alert("If app didn’t open, choose GPay/PhonePe/Paytm or copy UPI ID."),1200);
 }
 
-function copyTG(){
-  navigator.clipboard.writeText("@EliteExclusiveX");
-  showToast("✔ Telegram Username Copied");
-}
-
-function showToast(msg){
+/* Copy helper */
+function copyText(id){
+  navigator.clipboard.writeText(document.getElementById(id).textContent);
   const t=document.getElementById('toast');
-  t.textContent=msg;
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),1200);
 }
