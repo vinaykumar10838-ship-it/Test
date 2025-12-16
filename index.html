@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EliteHub – Access Payment</title>
+<title>EliteHub – Premium Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -13,31 +14,41 @@
 :root{
   --elite:#00E676;
   --hub:#00BFA5;
-  --text:#E0E0E0;
   --bg:#040b18;
   --card:#0b203b;
+  --text:#E0E0E0;
+  --price:#19b9ff;
+  --danger:#FF5252;
 }
 *{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
 
 body{
-  margin:0;min-height:100vh;
-  display:flex;align-items:center;justify-content:center;
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background:linear-gradient(135deg,#040b18,#071a2f,#040b18);
   color:#eaf7ff;
 }
 
 .card{
-  width:94%;max-width:420px;
+  width:94%;
+  max-width:420px;
   background:var(--card);
-  border-radius:26px;
+  border-radius:28px;
   padding:26px 22px;
   text-align:center;
   box-shadow:0 40px 90px rgba(0,0,0,.65);
 }
 
 .logo{
-  width:110px;height:110px;border-radius:50%;
-  margin:auto;background:#000;overflow:hidden;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  margin:auto;
+  background:#000;
+  overflow:hidden;
   box-shadow:0 0 40px rgba(0,230,118,.8);
 }
 .logo img{width:100%;height:100%;object-fit:cover}
@@ -59,27 +70,42 @@ body{
 .notice{
   margin:18px 0;
   font-size:15px;
-  font-weight:700;
-  color:#FF5252;
+  font-weight:800;
+  color:var(--danger);
 }
 
-.plans{
+.panel{
   background:#06152c;
   border-radius:18px;
   padding:14px;
-  margin-bottom:16px;
-}
-.plans div{
-  margin:6px 0;
-  font-weight:700;
+  margin:16px 0;
 }
 
+.plan{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 12px;
+  background:#071c33;
+  border-radius:12px;
+  margin-bottom:8px;
+  font-size:14px;
+  font-weight:700;
+}
+.plan span.price{color:var(--price)}
+
 .qr{
-  margin:14px auto;
   width:220px;
+  margin:12px auto;
   border-radius:14px;
   background:#fff;
   padding:10px;
+}
+
+.value{
+  font-size:18px;
+  font-weight:900;
+  color:var(--elite);
+  margin-top:8px;
 }
 
 .btn{
@@ -93,8 +119,15 @@ body{
   cursor:pointer;
 }
 
-.copy-upi{background:linear-gradient(180deg,#44ffb8,#1fd79a)}
-.copy-tg{background:linear-gradient(180deg,#1bbcff,#0d8fcf)}
+.btn-upi{background:linear-gradient(180deg,#44ffb8,#1fd79a)}
+.btn-tg{background:linear-gradient(180deg,#1bbcff,#0d8fcf)}
+
+.instruction{
+  margin-top:12px;
+  font-size:13px;
+  color:#9edfff;
+  line-height:1.5;
+}
 
 .footer{
   margin-top:14px;
@@ -124,6 +157,7 @@ body{
 
 <div class="card">
 
+  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
@@ -133,37 +167,62 @@ body{
   </div>
   <div class="subtitle">Premium Telegram Access</div>
 
-  <div class="notice">
-    ❌ Free Trial Expired  
+  <div class="notice">❌ Free Trial Expired</div>
+
+  <!-- PLANS -->
+  <div class="panel">
+    <div class="plan">
+      <span>1-Day Trial</span>
+      <span class="price">₹29</span>
+    </div>
+    <div class="plan">
+      <span>Weekly Access</span>
+      <span class="price">₹49</span>
+    </div>
+    <div class="plan">
+      <span>Monthly Access</span>
+      <span class="price">₹99</span>
+    </div>
+    <div class="plan">
+      <span>Lifetime Access</span>
+      <span class="price">₹199</span>
+    </div>
   </div>
 
-  <div class="plans">
-    <div>💎 Monthly — ₹99</div>
-    <div>🔥 Weekly — ₹49</div>
-    <div>🏆 Lifetime — ₹199</div>
+  <!-- PAYMENT -->
+  <div class="panel">
+    <div class="subtitle">Scan & Pay (UPI)</div>
+
+    <img src="upi-qr.png" class="qr" alt="UPI QR">
+
+    <div class="value" id="upi">Q919329672@ybl</div>
+
+    <button class="btn btn-upi" onclick="copyText('upi')">
+      📋 Copy UPI ID
+    </button>
   </div>
 
-  <div class="qr">
-    <!-- QR IMAGE FILE NAME -->
-    <img src="upi-qr.png" width="100%">
+  <!-- TELEGRAM -->
+  <div class="panel">
+    <div class="subtitle">Contact on Telegram</div>
+    <div class="value" id="tg">@EliteExclusiveX</div>
+
+    <button class="btn btn-tg" onclick="copyText('tg')">
+      📩 Copy Telegram Username
+    </button>
   </div>
 
-  <button class="btn copy-upi" onclick="copyText('upi')">
-    📋 Copy UPI ID
-  </button>
-
-  <button class="btn copy-tg" onclick="copyText('tg')">
-    📩 Copy Telegram Username
-  </button>
+  <div class="instruction">
+    1️⃣ Pay using UPI QR or ID<br>
+    2️⃣ Copy Telegram username<br>
+    3️⃣ Search on Telegram & send payment screenshot
+  </div>
 
   <div class="footer">
-    After payment, search on Telegram & send screenshot.
+    EliteHub Official • Secure • Verified
   </div>
 
 </div>
-
-<div id="upi" style="display:none">Q919329672@ybl</div>
-<div id="tg" style="display:none">@EliteExclusiveX</div>
 
 <div class="toast" id="toast">✔ Copied</div>
 
