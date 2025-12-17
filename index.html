@@ -50,11 +50,7 @@ body{
   border-radius:50%;
   overflow:hidden;
 }
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+.logo img{width:100%;height:100%;object-fit:cover}
 
 h1{
   margin:8px 0 4px;
@@ -131,10 +127,7 @@ h1{
   transform:translateY(4px);
   transition:.25s ease;
 }
-.copy-badge.show{
-  opacity:1;
-  transform:translateY(0);
-}
+.copy-badge.show{opacity:1;transform:translateY(0)}
 
 /* PLAN */
 .plan{
@@ -184,7 +177,7 @@ h1{
 
 <div class="card">
 
-  <!-- LOGO (REPLACED) -->
+  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXkP-AJXQhiEcvT8LAGfoprkTPi_vK5v7qVDxmN0bUw4UbVVesu0Tfsoc5wVuV90dNvocLFIV3ObxOm_xA2q2NCTd7ebWBFrbTRfToOnH_fprr6uRq3lHFQPnZY_DzyGI_WsqRRx2AnG0u-NtblkSThDGW67vTJSbNcTrhe20F5Mc66-th-hUsvnAiUgk/s320/86034.jpg">
   </div>
@@ -195,7 +188,7 @@ h1{
   <!-- QR -->
   <div class="qr-box">
     <img id="qrImg" alt="UPI QR">
-    <div class="scan-text">Scan to pay ₹199</div>
+    <div class="scan-text">Scan to pay ₹1</div>
 
     <div class="upi-row">
       <span class="upi-text">Q919329672@ybl</span>
@@ -207,8 +200,8 @@ h1{
 
   <!-- PLAN -->
   <div class="plan">
-    <div>Lifetime Access <span class="badge">BEST VALUE</span></div>
-    <div>₹199</div>
+    <div>Lifetime Access <span class="badge">TODAY ONLY</span></div>
+    <div>₹1</div>
   </div>
 
   <button class="pay-btn">Scan & Pay via UPI</button>
@@ -218,7 +211,7 @@ h1{
 
 <script>
 const UPI = "Q919329672@ybl";
-const AMOUNT = 199;
+const AMOUNT = 1;
 
 document.getElementById("qrImg").src =
   "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
