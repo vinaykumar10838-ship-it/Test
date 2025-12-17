@@ -42,7 +42,7 @@ body{
   box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
-/* LOGO */
+/* HEADER */
 .logo{
   width:110px;height:110px;
   margin:0 auto 8px;
@@ -70,18 +70,34 @@ h1{
   border-radius:18px;
   padding:16px;
   margin-bottom:16px;
-  animation:float 3s ease-in-out infinite;
+  position:relative;
 }
 
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
+.qr-loader{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(14,42,33,.85);
+  border-radius:18px;
+  font-size:14px;
+  color:var(--green);
+  display:none;
 }
+
+.qr-box.loading .qr-loader{display:flex}
 
 .qr-box img{
   width:100%;
   max-width:260px;
   border-radius:14px;
+  animation:pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.03)}
 }
 
 .qr-text{
@@ -97,6 +113,25 @@ h1{
   color:var(--green);
   font-weight:700;
   cursor:pointer;
+  display:inline-block;
+}
+
+.copy-badge{
+  display:inline-block;
+  margin-left:6px;
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:10px;
+  background:rgba(0,230,118,.2);
+  color:var(--green);
+  opacity:0;
+  transform:translateY(-4px);
+  transition:.25s;
+}
+
+.copy-badge.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* PLANS */
@@ -113,6 +148,7 @@ h1{
   border:2px solid transparent;
   cursor:pointer;
 }
+
 .plan.active{border-color:var(--green)}
 
 .badge{
@@ -156,22 +192,6 @@ h1{
   font-size:12px;
   color:#6bbf9b;
 }
-
-/* TOAST */
-.toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#000;
-  color:var(--green);
-  padding:10px 18px;
-  border-radius:20px;
-  font-size:14px;
-  opacity:0;
-  transition:.3s;
-}
-.toast.show{opacity:1}
 </style>
 </head>
 
@@ -187,10 +207,14 @@ h1{
   <div class="trust">⭐ Trusted by 1,000+ users</div>
 
   <!-- QR -->
-  <div class="qr-box">
+  <div class="qr-box" id="qrBox">
+    <div class="qr-loader">Generating QR…</div>
     <img id="qr">
     <div class="qr-text" id="qrAmt"></div>
-    <div class="upi-copy" onclick="copyUPI()">📋 Q919329672@ybl</div>
+    <div class="upi-copy" onclick="copyUPI()">
+      📋 Q919329672@ybl
+      <span class="copy-badge" id="upiBadge">Copied</span>
+    </div>
   </div>
 
   <!-- PLANS -->
@@ -212,11 +236,10 @@ h1{
   <button class="pay-btn">Scan & Pay via UPI</button>
   <div class="info">🔒 Instant Access After Payment</div>
 
-  <div class="tg" onclick="copyTG()">@EliteExclusiveX</div>
+  <div class="tg">@EliteExclusiveX</div>
   <div class="footer">EliteHub Official • Secure Payment • One-time payment</div>
-</div>
 
-<div class="toast" id="toast"></div>
+</div>
 
 <script>
 const UPI_ID = "Q919329672@ybl";
@@ -224,12 +247,20 @@ let amount = 1;
 
 const qr = document.getElementById("qr");
 const qrAmt = document.getElementById("qrAmt");
-const toast = document.getElementById("toast");
+const qrBox = document.getElementById("qrBox");
+const badge = document.getElementById("upiBadge");
 
 function updateQR(){
+  qrBox.classList.add("loading");
   const upi = `upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
-  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(upi);
-  qrAmt.textContent = `Scan to pay ₹${amount}`;
+  const src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(upi);
+  const img = new Image();
+  img.onload = ()=>{
+    qr.src = src;
+    qrAmt.textContent = `Scan to pay ₹${amount}`;
+    qrBox.classList.remove("loading");
+  };
+  img.src = src;
 }
 updateQR();
 
@@ -242,22 +273,12 @@ document.querySelectorAll(".plan").forEach(p=>{
   }
 });
 
-function showToast(msg){
-  toast.textContent = msg;
-  toast.classList.add("show");
-  setTimeout(()=>toast.classList.remove("show"),1200);
-}
-
 function copyUPI(){
   navigator.clipboard.writeText(UPI_ID);
-  showToast("UPI Copied");
-}
-
-function copyTG(){
-  navigator.clipboard.writeText("@EliteExclusiveX");
-  showToast("Username Copied");
+  badge.classList.add("show");
+  setTimeout(()=>badge.classList.remove("show"),1200);
 }
 </script>
 
 </body>
-</html>
+  </html>
