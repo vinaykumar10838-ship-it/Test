@@ -13,6 +13,7 @@
 <style>
 :root{
   --green:#00E676;
+  --green-dark:#00C853;
   --bg:#081612;
   --card:#0b1f18;
   --text:#e8fff4;
@@ -36,58 +37,73 @@ body{
   max-width:420px;
   background:linear-gradient(180deg,#0b1f18,#081612);
   border-radius:22px;
-  padding:22px;
+  padding:24px;
   text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
+/* LOGO */
 .logo{
-  width:100px;height:100px;margin:0 auto 6px;
-  border-radius:50%;overflow:hidden;
+  width:110px;
+  height:110px;
+  margin:0 auto 8px;
+  border-radius:50%;
+  overflow:hidden;
 }
 .logo img{width:100%;height:100%;object-fit:cover}
 
-h1{margin:6px 0;font-size:28px;color:var(--green)}
-.trust{font-size:14px;color:var(--muted);margin-bottom:12px}
+h1{
+  margin:8px 0 6px;
+  font-size:30px;
+  font-weight:800;
+  color:var(--green);
+}
+
+.trust{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:14px;
+}
 
 /* QR */
 .qr-box{
   background:#0e2a21;
-  padding:14px;
-  border-radius:16px;
+  border-radius:18px;
+  padding:16px;
   margin-bottom:16px;
 }
 .qr-box img{
-  width:170px;
-  border-radius:12px;
+  width:100%;
+  max-width:260px;
+  border-radius:14px;
 }
-.qr-amt{
-  margin-top:6px;
+.qr-text{
+  margin-top:8px;
   font-size:14px;
   color:var(--muted);
 }
-
 .qr-actions{
-  margin-top:8px;
   display:flex;
   justify-content:center;
-  gap:12px;
+  gap:14px;
+  margin-top:10px;
 }
-
 .qr-btn{
-  font-size:13px;
-  color:var(--green);
   cursor:pointer;
+  font-size:14px;
+  color:var(--green);
+  font-weight:700;
 }
 
-/* PLANS (NOW LOWER) */
+/* PLANS */
 .plan{
   display:flex;
   justify-content:space-between;
   align-items:center;
   background:#0e2a21;
-  border-radius:14px;
+  border-radius:16px;
   padding:12px 14px;
-  margin-bottom:8px;
+  margin-bottom:10px;
   font-size:15px;
   font-weight:700;
   border:2px solid transparent;
@@ -97,29 +113,34 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
 
 .badge{
   font-size:10px;
-  padding:3px 7px;
-  border-radius:8px;
+  padding:3px 8px;
+  border-radius:10px;
+  margin-left:6px;
   background:rgba(0,230,118,.15);
   color:var(--green);
-  margin-left:6px;
 }
 
-/* PAY */
+/* PAY BUTTON */
 .pay-btn{
   width:100%;
   margin-top:14px;
-  padding:15px;
+  padding:16px;
   border:none;
   border-radius:18px;
   font-size:18px;
   font-weight:800;
-  background:linear-gradient(135deg,#00E676,#00C853);
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
   color:#003820;
 }
 
 /* INFO */
-.info{margin-top:8px;font-size:13px;color:var(--muted)}
+.info{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--muted);
+}
 
+/* TELEGRAM */
 .tg{
   margin-top:12px;
   font-size:16px;
@@ -156,6 +177,7 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
 
 <div class="card">
 
+  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
@@ -163,17 +185,17 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
   <h1>EliteHub</h1>
   <div class="trust">⭐ Trusted by 1,000+ users</div>
 
-  <!-- QR FIRST -->
+  <!-- QR -->
   <div class="qr-box">
     <img id="qr">
-    <div class="qr-amt" id="qrAmt"></div>
+    <div class="qr-text" id="qrAmt"></div>
     <div class="qr-actions">
       <div class="qr-btn" onclick="downloadQR()">⬇ Download QR</div>
       <div class="qr-btn" onclick="copyUPI()">📋 Copy UPI</div>
     </div>
   </div>
 
-  <!-- PLANS BELOW -->
+  <!-- PLANS -->
   <div class="plan active" data-amount="1">
     <div>1-Day Trial <span class="badge">LIMITED</span></div>
     <div>₹1</div>
@@ -190,6 +212,7 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
   </div>
 
   <button class="pay-btn">Scan & Pay via UPI</button>
+
   <div class="info">🔒 Instant Access After Payment</div>
 
   <div class="tg" onclick="copyTG()">@EliteExclusiveX</div>
@@ -200,52 +223,72 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
 <div class="toast" id="toast"></div>
 
 <script>
-const UPI_ID="Mswp.2520100425652180@axisbank";
-const TG="@EliteExclusiveX";
-let amount=1;
+const UPI_ID = "Mswp.2520100425652180@axisbank";
+let amount = 1;
 
-const qr=document.getElementById("qr");
-const qrAmt=document.getElementById("qrAmt");
-const toast=document.getElementById("toast");
+const qr = document.getElementById("qr");
+const qrAmt = document.getElementById("qrAmt");
+const toast = document.getElementById("toast");
 
+/* UPDATE QR */
 function updateQR(){
-  const upi=`upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
-  qr.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(upi)}`;
-  qrAmt.textContent=`Scan to pay ₹${amount}`;
+  const upi = `upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
+  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(upi);
+  qrAmt.innerHTML = `Scan to pay ₹${amount}<br><small>${UPI_ID}</small>`;
 }
 updateQR();
 
+/* PLAN CLICK */
 document.querySelectorAll(".plan").forEach(p=>{
   p.onclick=()=>{
     document.querySelectorAll(".plan").forEach(x=>x.classList.remove("active"));
     p.classList.add("active");
-    amount=p.dataset.amount;
+    amount = p.dataset.amount;
     updateQR();
   }
 });
 
+/* TOAST */
 function showToast(msg){
-  toast.textContent=msg;
+  toast.textContent = msg;
   toast.classList.add("show");
   setTimeout(()=>toast.classList.remove("show"),1200);
 }
 
-function downloadQR(){
-  const a=document.createElement("a");
-  a.href=qr.src;
-  a.download=`EliteHub-₹${amount}-QR.png`;
-  a.click();
-  showToast("QR Downloaded");
-}
-
+/* COPY */
 function copyUPI(){
   navigator.clipboard.writeText(UPI_ID);
-  showToast("UPI Copied");
+  showToast("UPI ID Copied");
+}
+function copyTG(){
+  navigator.clipboard.writeText("@EliteExclusiveX");
+  showToast("Username Copied");
 }
 
-function copyTG(){
-  navigator.clipboard.writeText(TG);
-  showToast("Username Copied");
+/* REAL DOWNLOAD */
+function downloadQR(){
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.src = qr.src;
+
+  img.onload = ()=>{
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    canvas.getContext("2d").drawImage(img,0,0);
+
+    canvas.toBlob(blob=>{
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `EliteHub-₹${amount}-QR.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("QR Saved");
+    });
+  };
 }
 </script>
 
