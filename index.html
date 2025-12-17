@@ -13,7 +13,6 @@
 <style>
 :root{
   --green:#00E676;
-  --green-dark:#00C853;
   --bg:#081612;
   --card:#0b1f18;
   --text:#e8fff4;
@@ -37,90 +36,87 @@ body{
   max-width:420px;
   background:linear-gradient(180deg,#0b1f18,#081612);
   border-radius:22px;
-  padding:24px;
+  padding:22px;
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
-/* LOGO */
 .logo{
-  width:110px;
-  height:110px;
-  margin:0 auto 10px;
-  border-radius:50%;
-  overflow:hidden;
+  width:100px;height:100px;margin:0 auto 6px;
+  border-radius:50%;overflow:hidden;
 }
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+.logo img{width:100%;height:100%;object-fit:cover}
 
-h1{
-  margin:6px 0;
-  font-size:30px;
-  font-weight:800;
-  color:var(--green);
-}
+h1{margin:6px 0;font-size:28px;color:var(--green)}
+.trust{font-size:14px;color:var(--muted);margin-bottom:12px}
 
-.trust{
-  font-size:14px;
-  color:var(--muted);
-  margin-bottom:16px;
-}
-
-/* PLANS */
+/* SMALLER PLANS */
 .plan{
   display:flex;
   justify-content:space-between;
   align-items:center;
   background:#0e2a21;
-  border-radius:16px;
-  padding:14px 16px;
-  margin-bottom:10px;
-  font-size:16px;
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:8px;
+  font-size:15px;
   font-weight:700;
   border:2px solid transparent;
   cursor:pointer;
 }
-
-.plan.active{
-  border-color:var(--green);
-}
+.plan.active{border-color:var(--green)}
 
 .badge{
-  font-size:11px;
-  padding:4px 8px;
-  border-radius:10px;
-  margin-left:6px;
+  font-size:10px;
+  padding:3px 7px;
+  border-radius:8px;
   background:rgba(0,230,118,.15);
   color:var(--green);
-  font-weight:700;
+  margin-left:6px;
 }
 
-/* PAY BUTTON */
+/* QR BOX */
+.qr-box{
+  margin-top:14px;
+  background:#0e2a21;
+  padding:12px;
+  border-radius:16px;
+}
+.qr-box img{
+  width:160px;
+  border-radius:12px;
+}
+.qr-amt{
+  margin-top:6px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.download{
+  margin-top:6px;
+  display:inline-block;
+  font-size:13px;
+  color:var(--green);
+  cursor:pointer;
+}
+
+/* PAY */
 .pay-btn{
   width:100%;
   margin-top:14px;
-  padding:16px;
+  padding:15px;
   border:none;
   border-radius:18px;
   font-size:18px;
   font-weight:800;
-  cursor:pointer;
-  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  background:linear-gradient(135deg,#00E676,#00C853);
   color:#003820;
+  cursor:pointer;
 }
 
-.info{
-  margin-top:10px;
-  font-size:13px;
-  color:var(--muted);
-}
+.info{margin-top:8px;font-size:13px;color:var(--muted)}
 
-/* TELEGRAM */
 .tg{
-  margin-top:14px;
+  margin-top:12px;
   font-size:16px;
   font-weight:800;
   color:var(--green);
@@ -133,7 +129,6 @@ h1{
   color:#6bbf9b;
 }
 
-/* TOAST */
 .toast{
   position:fixed;
   bottom:20px;
@@ -155,7 +150,6 @@ h1{
 
 <div class="card">
 
-  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
@@ -170,21 +164,25 @@ h1{
   </div>
 
   <div class="plan" data-amount="99">
-    <div>Monthly <span class="badge">MOST POPULAR</span></div>
+    <div>Monthly <span class="badge">POPULAR</span></div>
     <div>₹99</div>
   </div>
 
   <div class="plan" data-amount="199">
-    <div>Lifetime <span class="badge">BEST VALUE</span></div>
+    <div>Lifetime <span class="badge">BEST</span></div>
     <div>₹199</div>
   </div>
 
-  <!-- PAY -->
-  <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
+  <!-- QR -->
+  <div class="qr-box">
+    <img id="qr" src="">
+    <div class="qr-amt" id="qrAmt"></div>
+    <div class="download" onclick="downloadQR()">⬇ Download QR</div>
+  </div>
 
+  <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
   <div class="info">🔒 Instant Access After Payment</div>
 
-  <!-- TELEGRAM -->
   <div class="tg" onclick="copyTG()">@EliteExclusiveX</div>
   <div class="footer">EliteHub Official • Secure Payment • One-time payment</div>
 
@@ -193,51 +191,47 @@ h1{
 <div class="toast" id="toast">✔ Username Copied</div>
 
 <script>
-/* CONFIG */
-const UPI_ID = "Mswp.2520100425652180@axisbank";
-const QR_URL = "https://vinaykumar10838-ship-it.github.io/Test/upi-qr.png.png";
-const TG_USERNAME = "@EliteExclusiveX";
+const UPI_ID="Mswp.2520100425652180@axisbank";
+const TG="@EliteExclusiveX";
+let amount=1;
 
-let amount = 1;
-const plans = document.querySelectorAll('.plan');
-const payBtn = document.getElementById('payBtn');
+const qrImg=document.getElementById("qr");
+const qrAmt=document.getElementById("qrAmt");
+const payBtn=document.getElementById("payBtn");
 
-/* PLAN SELECT */
-plans.forEach(p=>{
-  p.onclick = ()=>{
-    plans.forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    amount = p.dataset.amount;
-    payBtn.textContent = `Pay ₹${amount} Securely`;
+function updateQR(){
+  const upi=`upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
+  qrImg.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(upi)}`;
+  qrAmt.textContent=`Scan to pay ₹${amount}`;
+  payBtn.textContent=`Pay ₹${amount} Securely`;
+}
+updateQR();
+
+document.querySelectorAll(".plan").forEach(p=>{
+  p.onclick=()=>{
+    document.querySelectorAll(".plan").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    amount=p.dataset.amount;
+    updateQR();
   }
 });
 
-/* PAY ACTION */
-payBtn.onclick = ()=>{
+payBtn.onclick=()=>{
+  location.href=`upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
+}
 
-  // ✅ ₹1 Trial → QR (APK / in-app safe)
-  if(amount == 1){
-    window.open(QR_URL, "_blank");
-    return;
-  }
-
-  // ✅ ₹99 / ₹199 → UPI intent
-  const upiLink =
-    `upi://pay?pa=${UPI_ID}` +
-    `&pn=EliteHub` +
-    `&am=${amount}` +
-    `&cu=INR` +
-    `&tn=EliteHub%20Access`;
-
-  location.href = upiLink;
-};
-
-/* COPY TELEGRAM */
 function copyTG(){
-  navigator.clipboard.writeText(TG_USERNAME);
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),1200);
+  navigator.clipboard.writeText(TG);
+  const t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),1200);
+}
+
+function downloadQR(){
+  const a=document.createElement("a");
+  a.href=qrImg.src;
+  a.download=`EliteHub-₹${amount}-QR.png`;
+  a.click();
 }
 </script>
 
