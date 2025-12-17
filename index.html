@@ -49,7 +49,37 @@ body{
 h1{margin:6px 0;font-size:28px;color:var(--green)}
 .trust{font-size:14px;color:var(--muted);margin-bottom:12px}
 
-/* SMALLER PLANS */
+/* QR */
+.qr-box{
+  background:#0e2a21;
+  padding:14px;
+  border-radius:16px;
+  margin-bottom:16px;
+}
+.qr-box img{
+  width:170px;
+  border-radius:12px;
+}
+.qr-amt{
+  margin-top:6px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.qr-actions{
+  margin-top:8px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+
+.qr-btn{
+  font-size:13px;
+  color:var(--green);
+  cursor:pointer;
+}
+
+/* PLANS (NOW LOWER) */
 .plan{
   display:flex;
   justify-content:space-between;
@@ -74,31 +104,6 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
   margin-left:6px;
 }
 
-/* QR BOX */
-.qr-box{
-  margin-top:14px;
-  background:#0e2a21;
-  padding:12px;
-  border-radius:16px;
-}
-.qr-box img{
-  width:160px;
-  border-radius:12px;
-}
-.qr-amt{
-  margin-top:6px;
-  font-size:14px;
-  color:var(--muted);
-}
-
-.download{
-  margin-top:6px;
-  display:inline-block;
-  font-size:13px;
-  color:var(--green);
-  cursor:pointer;
-}
-
 /* PAY */
 .pay-btn{
   width:100%;
@@ -110,9 +115,9 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
   font-weight:800;
   background:linear-gradient(135deg,#00E676,#00C853);
   color:#003820;
-  cursor:pointer;
 }
 
+/* INFO */
 .info{margin-top:8px;font-size:13px;color:var(--muted)}
 
 .tg{
@@ -129,6 +134,7 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
   color:#6bbf9b;
 }
 
+/* TOAST */
 .toast{
   position:fixed;
   bottom:20px;
@@ -157,7 +163,17 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
   <h1>EliteHub</h1>
   <div class="trust">⭐ Trusted by 1,000+ users</div>
 
-  <!-- PLANS -->
+  <!-- QR FIRST -->
+  <div class="qr-box">
+    <img id="qr">
+    <div class="qr-amt" id="qrAmt"></div>
+    <div class="qr-actions">
+      <div class="qr-btn" onclick="downloadQR()">⬇ Download QR</div>
+      <div class="qr-btn" onclick="copyUPI()">📋 Copy UPI</div>
+    </div>
+  </div>
+
+  <!-- PLANS BELOW -->
   <div class="plan active" data-amount="1">
     <div>1-Day Trial <span class="badge">LIMITED</span></div>
     <div>₹1</div>
@@ -173,14 +189,7 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
     <div>₹199</div>
   </div>
 
-  <!-- QR -->
-  <div class="qr-box">
-    <img id="qr" src="">
-    <div class="qr-amt" id="qrAmt"></div>
-    <div class="download" onclick="downloadQR()">⬇ Download QR</div>
-  </div>
-
-  <button class="pay-btn" id="payBtn">Pay ₹1 Securely</button>
+  <button class="pay-btn">Scan & Pay via UPI</button>
   <div class="info">🔒 Instant Access After Payment</div>
 
   <div class="tg" onclick="copyTG()">@EliteExclusiveX</div>
@@ -188,22 +197,21 @@ h1{margin:6px 0;font-size:28px;color:var(--green)}
 
 </div>
 
-<div class="toast" id="toast">✔ Username Copied</div>
+<div class="toast" id="toast"></div>
 
 <script>
 const UPI_ID="Mswp.2520100425652180@axisbank";
 const TG="@EliteExclusiveX";
 let amount=1;
 
-const qrImg=document.getElementById("qr");
+const qr=document.getElementById("qr");
 const qrAmt=document.getElementById("qrAmt");
-const payBtn=document.getElementById("payBtn");
+const toast=document.getElementById("toast");
 
 function updateQR(){
   const upi=`upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
-  qrImg.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(upi)}`;
+  qr.src=`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(upi)}`;
   qrAmt.textContent=`Scan to pay ₹${amount}`;
-  payBtn.textContent=`Pay ₹${amount} Securely`;
 }
 updateQR();
 
@@ -216,22 +224,28 @@ document.querySelectorAll(".plan").forEach(p=>{
   }
 });
 
-payBtn.onclick=()=>{
-  location.href=`upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
-}
-
-function copyTG(){
-  navigator.clipboard.writeText(TG);
-  const t=document.getElementById("toast");
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),1200);
+function showToast(msg){
+  toast.textContent=msg;
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),1200);
 }
 
 function downloadQR(){
   const a=document.createElement("a");
-  a.href=qrImg.src;
+  a.href=qr.src;
   a.download=`EliteHub-₹${amount}-QR.png`;
   a.click();
+  showToast("QR Downloaded");
+}
+
+function copyUPI(){
+  navigator.clipboard.writeText(UPI_ID);
+  showToast("UPI Copied");
+}
+
+function copyTG(){
+  navigator.clipboard.writeText(TG);
+  showToast("Username Copied");
 }
 </script>
 
