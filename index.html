@@ -15,7 +15,7 @@
   --green:#00E676;
   --green-dark:#00C853;
   --bg:#081612;
-  --card:#0b1f18;
+  --card:#0f2a22;
   --text:#e8fff4;
   --muted:#7ed9b2;
 }
@@ -37,22 +37,27 @@ body{
   max-width:420px;
   background:linear-gradient(180deg,#0b1f18,#081612);
   border-radius:22px;
-  padding:24px;
+  padding:22px;
   text-align:center;
   box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
-/* HEADER */
+/* LOGO */
 .logo{
-  width:110px;height:110px;
-  margin:0 auto 8px;
+  width:105px;
+  height:105px;
+  margin:0 auto 6px;
   border-radius:50%;
   overflow:hidden;
 }
-.logo img{width:100%;height:100%;object-fit:cover}
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
 h1{
-  margin:8px 0 6px;
+  margin:8px 0 4px;
   font-size:30px;
   font-weight:800;
   color:var(--green);
@@ -64,69 +69,60 @@ h1{
   margin-bottom:14px;
 }
 
-/* QR BOX */
+/* QR */
 .qr-box{
   background:#0e2a21;
   border-radius:18px;
-  padding:16px;
-  margin-bottom:16px;
-  position:relative;
+  padding:14px;
+  margin-bottom:14px;
 }
-
-.qr-loader{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(14,42,33,.85);
-  border-radius:18px;
-  font-size:14px;
-  color:var(--green);
-  display:none;
-}
-
-.qr-box.loading .qr-loader{display:flex}
 
 .qr-box img{
   width:100%;
   max-width:260px;
-  border-radius:14px;
-  animation:pulse 2.5s ease-in-out infinite;
+  border-radius:12px;
 }
 
-@keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.03)}
-}
-
-.qr-text{
-  margin-top:10px;
+.scan-text{
+  margin-top:8px;
   font-size:14px;
   color:var(--muted);
 }
 
-/* UPI COPY */
-.upi-copy{
+/* UPI ROW */
+.upi-row{
   margin-top:6px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
   font-size:14px;
+}
+
+.upi-text{
+  color:#9fffd6;
+  font-weight:600;
+}
+
+.upi-copy{
+  position:relative;
   color:var(--green);
   font-weight:700;
   cursor:pointer;
-  display:inline-block;
 }
 
 .copy-badge{
-  display:inline-block;
-  margin-left:6px;
+  position:absolute;
+  top:-18px;
+  right:0;
   font-size:11px;
   padding:3px 8px;
   border-radius:10px;
-  background:rgba(0,230,118,.2);
+  background:rgba(0,230,118,.25);
   color:var(--green);
   opacity:0;
-  transform:translateY(-4px);
-  transition:.25s;
+  transform:translateY(4px);
+  transition:.25s ease;
 }
 
 .copy-badge.show{
@@ -140,19 +136,21 @@ h1{
   justify-content:space-between;
   align-items:center;
   background:#0e2a21;
-  border-radius:16px;
+  border-radius:14px;
   padding:12px 14px;
-  margin-bottom:10px;
+  margin-bottom:8px;
   font-size:15px;
   font-weight:700;
   border:2px solid transparent;
   cursor:pointer;
 }
 
-.plan.active{border-color:var(--green)}
+.plan.active{
+  border-color:var(--green);
+}
 
 .badge{
-  font-size:10px;
+  font-size:11px;
   padding:3px 8px;
   border-radius:10px;
   margin-left:6px;
@@ -160,11 +158,11 @@ h1{
   color:var(--green);
 }
 
-/* PAY */
+/* PAY BUTTON */
 .pay-btn{
   width:100%;
-  margin-top:14px;
-  padding:16px;
+  margin-top:10px;
+  padding:15px;
   border:none;
   border-radius:18px;
   font-size:18px;
@@ -179,18 +177,11 @@ h1{
   color:var(--muted);
 }
 
-.tg{
-  margin-top:12px;
-  font-size:16px;
-  font-weight:800;
+.support{
+  margin-top:10px;
+  font-size:15px;
   color:var(--green);
-  cursor:pointer;
-}
-
-.footer{
-  margin-top:6px;
-  font-size:12px;
-  color:#6bbf9b;
+  font-weight:700;
 }
 </style>
 </head>
@@ -207,28 +198,31 @@ h1{
   <div class="trust">⭐ Trusted by 1,000+ users</div>
 
   <!-- QR -->
-  <div class="qr-box" id="qrBox">
-    <div class="qr-loader">Generating QR…</div>
-    <img id="qr">
-    <div class="qr-text" id="qrAmt"></div>
-    <div class="upi-copy" onclick="copyUPI()">
-      📋 Q919329672@ybl
-      <span class="copy-badge" id="upiBadge">Copied</span>
+  <div class="qr-box">
+    <img id="qrImg" src="" alt="UPI QR">
+    <div class="scan-text" id="scanText">Scan to pay ₹1</div>
+
+    <div class="upi-row">
+      <span class="upi-text">Q919329672@ybl</span>
+      <span class="upi-copy" onclick="copyUPI()">
+        📋 Copy
+        <span class="copy-badge" id="upiBadge">Copied</span>
+      </span>
     </div>
   </div>
 
   <!-- PLANS -->
-  <div class="plan active" data-amount="1">
+  <div class="plan active" data-amt="1">
     <div>1-Day Trial <span class="badge">LIMITED</span></div>
     <div>₹1</div>
   </div>
 
-  <div class="plan" data-amount="99">
+  <div class="plan" data-amt="99">
     <div>Monthly <span class="badge">POPULAR</span></div>
     <div>₹99</div>
   </div>
 
-  <div class="plan" data-amount="199">
+  <div class="plan" data-amt="199">
     <div>Lifetime <span class="badge">BEST</span></div>
     <div>₹199</div>
   </div>
@@ -236,49 +230,41 @@ h1{
   <button class="pay-btn">Scan & Pay via UPI</button>
   <div class="info">🔒 Instant Access After Payment</div>
 
-  <div class="tg">@EliteExclusiveX</div>
-  <div class="footer">EliteHub Official • Secure Payment • One-time payment</div>
-
+  <div class="support">@EliteExclusiveX</div>
 </div>
 
 <script>
-const UPI_ID = "Q919329672@ybl";
-let amount = 1;
+const UPI = "Q919329672@ybl";
+const qrImg = document.getElementById("qrImg");
+const scanText = document.getElementById("scanText");
+const plans = document.querySelectorAll(".plan");
 
-const qr = document.getElementById("qr");
-const qrAmt = document.getElementById("qrAmt");
-const qrBox = document.getElementById("qrBox");
-const badge = document.getElementById("upiBadge");
-
-function updateQR(){
-  qrBox.classList.add("loading");
-  const upi = `upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
-  const src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(upi);
-  const img = new Image();
-  img.onload = ()=>{
-    qr.src = src;
-    qrAmt.textContent = `Scan to pay ₹${amount}`;
-    qrBox.classList.remove("loading");
-  };
-  img.src = src;
+function updateQR(amount){
+  const upiString = `upi://pay?pa=${UPI}&pn=EliteHub&am=${amount}&cu=INR`;
+  qrImg.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+    encodeURIComponent(upiString);
+  scanText.textContent = `Scan to pay ₹${amount}`;
 }
-updateQR();
 
-document.querySelectorAll(".plan").forEach(p=>{
+plans.forEach(p=>{
   p.onclick=()=>{
-    document.querySelectorAll(".plan").forEach(x=>x.classList.remove("active"));
+    plans.forEach(x=>x.classList.remove("active"));
     p.classList.add("active");
-    amount = p.dataset.amount;
-    updateQR();
+    updateQR(p.dataset.amt);
   }
 });
 
 function copyUPI(){
-  navigator.clipboard.writeText(UPI_ID);
+  navigator.clipboard.writeText(UPI);
+  const badge=document.getElementById("upiBadge");
   badge.classList.add("show");
   setTimeout(()=>badge.classList.remove("show"),1200);
 }
+
+/* init */
+updateQR(1);
 </script>
 
 </body>
-  </html>
+</html>
