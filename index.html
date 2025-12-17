@@ -44,8 +44,7 @@ body{
 
 /* LOGO */
 .logo{
-  width:110px;
-  height:110px;
+  width:110px;height:110px;
   margin:0 auto 8px;
   border-radius:50%;
   overflow:hidden;
@@ -65,34 +64,39 @@ h1{
   margin-bottom:14px;
 }
 
-/* QR */
+/* QR BOX */
 .qr-box{
   background:#0e2a21;
   border-radius:18px;
   padding:16px;
   margin-bottom:16px;
+  animation:float 3s ease-in-out infinite;
 }
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
 .qr-box img{
   width:100%;
   max-width:260px;
   border-radius:14px;
 }
+
 .qr-text{
-  margin-top:8px;
+  margin-top:10px;
   font-size:14px;
   color:var(--muted);
 }
-.qr-actions{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  margin-top:10px;
-}
-.qr-btn{
-  cursor:pointer;
+
+/* UPI COPY */
+.upi-copy{
+  margin-top:6px;
   font-size:14px;
   color:var(--green);
   font-weight:700;
+  cursor:pointer;
 }
 
 /* PLANS */
@@ -120,7 +124,7 @@ h1{
   color:var(--green);
 }
 
-/* PAY BUTTON */
+/* PAY */
 .pay-btn{
   width:100%;
   margin-top:14px;
@@ -133,14 +137,12 @@ h1{
   color:#003820;
 }
 
-/* INFO */
 .info{
   margin-top:8px;
   font-size:13px;
   color:var(--muted);
 }
 
-/* TELEGRAM */
 .tg{
   margin-top:12px;
   font-size:16px;
@@ -177,7 +179,6 @@ h1{
 
 <div class="card">
 
-  <!-- LOGO -->
   <div class="logo">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjiSV-yt9bS0j-MDgTlHPrD8g5U7Bz2pbOCRKrA-cw6ydBD10TNn91U3QU6tjfrA1QFf6DCGbqpV-K_vZEOn9qO-EtGkL7fp6HfR1Op5mrpX3QdgKABcK2jtS8UgaMTkvyErN3kbY2INT1DN3NT0Q7nBWGPfrdP0hTV6PV0KhYtDRU9-yMX9ufKtOc_hs/s640/85938.jpg">
   </div>
@@ -189,10 +190,7 @@ h1{
   <div class="qr-box">
     <img id="qr">
     <div class="qr-text" id="qrAmt"></div>
-    <div class="qr-actions">
-      <div class="qr-btn" onclick="downloadQR()">⬇ Download QR</div>
-      <div class="qr-btn" onclick="copyUPI()">📋 Copy UPI</div>
-    </div>
+    <div class="upi-copy" onclick="copyUPI()">📋 Q919329672@ybl</div>
   </div>
 
   <!-- PLANS -->
@@ -212,33 +210,29 @@ h1{
   </div>
 
   <button class="pay-btn">Scan & Pay via UPI</button>
-
   <div class="info">🔒 Instant Access After Payment</div>
 
   <div class="tg" onclick="copyTG()">@EliteExclusiveX</div>
   <div class="footer">EliteHub Official • Secure Payment • One-time payment</div>
-
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const UPI_ID = "Mswp.2520100425652180@axisbank";
+const UPI_ID = "Q919329672@ybl";
 let amount = 1;
 
 const qr = document.getElementById("qr");
 const qrAmt = document.getElementById("qrAmt");
 const toast = document.getElementById("toast");
 
-/* UPDATE QR */
 function updateQR(){
   const upi = `upi://pay?pa=${UPI_ID}&pn=EliteHub&am=${amount}&cu=INR`;
   qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(upi);
-  qrAmt.innerHTML = `Scan to pay ₹${amount}<br><small>${UPI_ID}</small>`;
+  qrAmt.textContent = `Scan to pay ₹${amount}`;
 }
 updateQR();
 
-/* PLAN CLICK */
 document.querySelectorAll(".plan").forEach(p=>{
   p.onclick=()=>{
     document.querySelectorAll(".plan").forEach(x=>x.classList.remove("active"));
@@ -248,47 +242,20 @@ document.querySelectorAll(".plan").forEach(p=>{
   }
 });
 
-/* TOAST */
 function showToast(msg){
   toast.textContent = msg;
   toast.classList.add("show");
   setTimeout(()=>toast.classList.remove("show"),1200);
 }
 
-/* COPY */
 function copyUPI(){
   navigator.clipboard.writeText(UPI_ID);
-  showToast("UPI ID Copied");
+  showToast("UPI Copied");
 }
+
 function copyTG(){
   navigator.clipboard.writeText("@EliteExclusiveX");
   showToast("Username Copied");
-}
-
-/* REAL DOWNLOAD */
-function downloadQR(){
-  const img = new Image();
-  img.crossOrigin = "anonymous";
-  img.src = qr.src;
-
-  img.onload = ()=>{
-    const canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    canvas.getContext("2d").drawImage(img,0,0);
-
-    canvas.toBlob(blob=>{
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `EliteHub-₹${amount}-QR.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast("QR Saved");
-    });
-  };
 }
 </script>
 
